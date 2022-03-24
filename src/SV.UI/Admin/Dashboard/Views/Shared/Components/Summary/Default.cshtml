@@ -1,0 +1,9 @@
+﻿@if(ViewData.ModelState.ErrorCount > 0) 
+{
+    <div class="row mt-3 mb-0">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-6"> 
+            <div class="alert alert-default-danger" asp-validation-summary="All"></div>
+        </div>
+    </div>
+}

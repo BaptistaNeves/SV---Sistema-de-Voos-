@@ -1,0 +1,50 @@
+﻿@model SV.Application.InputModels.Aeronaves.ClasseInputModel
+
+@{
+    ViewData["Title"] = "Excluir Classe " + Model.Descricao;
+}
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">@Model.Descricao</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a asp-area="Painel" asp-controller="Home" asp-action="Index">Ínicio</a></li>
+                    <li class="breadcrumb-item active">@Model.Descricao</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+
+                <div class="card">
+                    <div class="card-body">
+                        <div class="col-md-12">
+                            <div class="card card-primary card-outline">
+                                <form asp-action="DeletePost">
+                                    <div class="card-header">
+                                        <h3 class="card-title">@Model.Descricao</h3>
+                                    </div>
+
+                                    <div class="card-footer">
+                                        <button type="submit" asp-route-id="@Model.Id" class="btn btn-danger"><i class="far fa-trash-alt"></i> Excluir</button>
+                                        <a asp-action="Index" class="btn btn-default">Voltar</a>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

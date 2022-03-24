@@ -1,0 +1,174 @@
+﻿@model SV.UI.Admin.Dashboard.ViewModels.Funcionarios.FuncionarioViewModel
+
+<div class="card-body d-flex justify-content-center">
+    <div class="col-12 col-md-10 col-lg-10">
+        <div class ="row">
+            <div class="form-group col-sm-10 col-md-8 col-lg-8">
+                <label asp-for="@Model.FuncionarioModel.Nome" class="col-form-label text-right">Nome:</label>
+                <div class="">
+                    <input asp-for="@Model.FuncionarioModel.Nome" class="form-control" placeholder="....">
+                    <span class="text-danger" asp-validation-for="@Model.FuncionarioModel.Nome"></span>
+                </div>
+            </div>
+             <div class="form-group col-sm-10 col-md-4 col-lg-4">
+                <label asp-for="@Model.FuncionarioModel.DataNascimento" class="col-form-label text-right">Data de nascimento:</label>
+                <div class="">
+                    <input asp-for="@Model.FuncionarioModel.DataNascimento" class="form-control" placeholder="....">
+                    <span class="text-danger" asp-validation-for="@Model.FuncionarioModel.DataNascimento"></span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+             <div class="form-group col-sm-10 col-md-6 col-lg-6">
+                <label asp-for="@Model.FuncionarioModel.Naturalidade" class="col-form-label text-right">Naturalidade:</label>
+                <div class="">
+                    <input asp-for="@Model.FuncionarioModel.Naturalidade" class="form-control" placeholder="....">
+                    <span class="text-danger" asp-validation-for="@Model.FuncionarioModel.Naturalidade"></span>
+                </div>
+            </div>
+             <div class="form-group col-sm-10 col-md-6 col-lg-6">
+                <label asp-for="@Model.FuncionarioModel.Nacionalidade" class="col-form-label text-right">Nacionalidade:</label>
+                <div class="">
+                    <input asp-for="@Model.FuncionarioModel.Nacionalidade" class="form-control" placeholder="....">
+                    <span class="text-danger" asp-validation-for="@Model.FuncionarioModel.Nacionalidade"></span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+             <div class="form-group col-sm-10 col-md-6 col-lg-6">
+                <label asp-for="@Model.FuncionarioModel.Documento" class="col-form-label text-right">Documento:</label>
+                <div class="">
+                   <select asp-for="@Model.FuncionarioModel.Documento" class="form-control">
+                       <option selected disabled>--Seleccione o documento--</option>
+                       <option value="Bilhete de identidade">Bilhete de Identidade</option>
+                       <option value="Passaporte">Passaporte</option>
+                       <option value="Cartão de residência">Cartão de Residente</option>
+                       <option value="Outro">Outro</option>
+                   </select>
+                    <span class="text-danger" asp-validation-for="@Model.FuncionarioModel.Naturalidade"></span>
+                </div>
+            </div>
+             <div class="form-group col-sm-10 col-md-6 col-lg-6">
+                <label asp-for="@Model.FuncionarioModel.NumeroDocumento" class="col-form-label text-right">Nº documento:</label>
+                <div class="">
+                    <input asp-for="@Model.FuncionarioModel.NumeroDocumento" class="form-control" placeholder="....">
+                    <span class="text-danger" asp-validation-for="@Model.FuncionarioModel.NumeroDocumento"></span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+             <div class="form-group col-sm-10 col-md-6 col-lg-6">
+                <label asp-for="@Model.FuncionarioModel.NivelAcademico" class="col-form-label text-right">Nível academico:</label>
+                <div class="">
+                   <select asp-for="@Model.FuncionarioModel.NivelAcademico" class="form-control">
+                       <option selected disabled>--Seleccione o nivel academico--</option>
+                       <option value="Secundário">Secundário</option>
+                       <option value="Pré-Universitário">Pré-Universitário</option>
+                       <option value="Técnico-Profissional">Técnico-Profissional</option>
+                       <option value="Bacharelato">Bacharelato</option>
+                       <option value="Linceciatura">Linceciatura</option>
+                       <option value="Mestrado">Mestrado</option>
+                       <option value="Pós-Graduação">Pós-Graduação</option>
+                       <option value="Doutoramento">Doutoramento</option>
+                       <option value="Outro">Outro</option>
+                   </select>
+                    <span class="text-danger" asp-validation-for="@Model.FuncionarioModel.NivelAcademico"></span>
+                </div>
+            </div>
+             <div class="form-group col-sm-10 col-md-6 col-lg-6">
+                <label asp-for="@Model.FuncionarioModel.NumeroDocumento" class="col-form-label text-right">Área academica:</label>
+                <div class="">
+                    <input asp-for="@Model.FuncionarioModel.NumeroDocumento" class="form-control" placeholder="....">
+                    <span class="text-danger" asp-validation-for="@Model.FuncionarioModel.NumeroDocumento"></span>
+                </div>
+            </div>
+        </div>
+        <div class ="row">
+            <div class="form-group col-sm-10 col-md-6 col-lg-">
+                <label asp-for="@Model.FuncionarioModel.Telefone" class="col-form-label text-right">Telefone:</label>
+                <div class="">
+                    <input asp-for="@Model.FuncionarioModel.Telefone" class="form-control" placeholder="....">
+                    <span class="text-danger" asp-validation-for="@Model.FuncionarioModel.Telefone"></span>
+                </div>
+            </div>
+             <div class="form-group col-sm-10 col-md-6 col-lg-6">
+                <label asp-for="@Model.FuncionarioModel.Email" class="col-form-label text-right">Email:</label>
+                <div class="">
+                    <input asp-for="@Model.FuncionarioModel.Email" class="form-control" placeholder="....">
+                    <span class="text-danger" asp-validation-for="@Model.FuncionarioModel.Email"></span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+             <div class="form-group col-sm-10 col-md-6 col-lg-6">
+                <label asp-for="@Model.FuncionarioModel.EstadoCivil" class="col-form-label text-right">Estado civil:</label>
+                <div class="">
+                   <select asp-for="@Model.FuncionarioModel.EstadoCivil" class="form-control">
+                       <option selected disabled>--Seleccione o estado civil--</option>
+                       <option value="Solteiro(a)">Solteiro(a)</option>
+                       <option value="Casado(a)">Casado(a)</option>
+                       <option value="Divorciado(a)">Divorciado(a)</option>
+                       <option value="Viúvo(a)">Viúvo(a)</option>
+                       <option value="Outro">Outro</option>
+                   </select>
+                    <span class="text-danger" asp-validation-for="@Model.FuncionarioModel.EstadoCivil"></span>
+                </div>
+            </div>
+             <div class="form-group col-sm-10 col-md-6 col-lg-6">
+                <label asp-for="@Model.FuncionarioModel.Sexo" class="col-form-label text-right">Sexo:</label>
+                 <div class="">
+                   <select asp-for="@Model.FuncionarioModel.Sexo" class="form-control">
+                       <option selected disabled>--Seleccione o sexo--</option>
+                       <option value="Masculino">Masculino</option>
+                       <option value="Femenino">Femenino</option>
+                       <option value="Outro">Outro</option>
+                   </select>
+                    <span class="text-danger" asp-validation-for="@Model.FuncionarioModel.Sexo"></span>
+                </div>
+            </div>
+        </div>
+        <div class ="row">
+            <div class="form-group col-sm-10 col-md-6 col-lg-6">
+                <label asp-for="@Model.FuncionarioModel.Endereco" class="col-form-label text-right">Endereço:</label>
+                <div class="">
+                    <textarea class="form-control" asp-for="@Model.FuncionarioModel.Endereco" rows="3" cols="10"></textarea>
+                    <span class="text-danger" asp-validation-for="@Model.FuncionarioModel.Endereco"></span>
+                </div>
+            </div>
+             <div class="form-group col-sm-10 col-md-6 col-lg-6">
+                <label asp-for="@Model.FuncionarioModel.Observacao" class="col-form-label text-right">Observação:</label>
+                <div class="">
+                    <textarea class="form-control" asp-for="@Model.FuncionarioModel.Observacao" rows="3" cols="10"></textarea>
+                    <span class="text-danger" asp-validation-for="@Model.FuncionarioModel.Observacao"></span>
+                </div>
+            </div>
+        </div>
+
+         <div class="col-sm-10 col-md-6 col-lg-6 form-group">
+           <label asp-for="@Model.FuncionarioModel.ImagemUpload" class="col-form-label text-right">Seleccionar foto:</label>
+          
+            <div class="">
+                <input type="file" asp-for="@Model.FuncionarioModel.ImagemUpload" class="form-control-file">
+                <span asp-validation-for="FuncionarioModel.ImagemUpload"></span>
+            </div>
+        </div>
+
+        <div class="col-sm-10 col-md-6 col-lg-6 form-group">
+                <label asp-for="@Model.FuncionarioModel.CategoriaFuncionarioId" class="col-form-label text-right">Tipo de funcionário:</label>
+                 <div class="">
+                   <select asp-for="@Model.FuncionarioModel.CategoriaFuncionarioId" asp-items="@(new SelectList(Model.Categorias, "Id", "Nome"))" class="form-control">
+                       <option selected disabled>--Seleccione o tipo de funcionário--</option>
+                   </select>
+                    <span class="text-danger" asp-validation-for="@Model.FuncionarioModel.CategoriaFuncionarioId"></span>
+                </div>
+            </div>
+
+         <div class="col-sm-10 col-md-6 col-lg-6 form-group">
+            <div class="col-sm-6 custom-control custom-checkbox">
+                <input asp-for="@Model.FuncionarioModel.Ativo" class="custom-control-input" type="checkbox" checked>
+                <label asp-for="@Model.FuncionarioModel.Ativo" class="custom-control-label">Activo</label>
+            </div>
+        </div>
+
+    </div>
+</div>

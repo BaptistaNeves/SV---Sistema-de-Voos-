@@ -1,0 +1,11 @@
+﻿@model SV.Application.InputModels.Aeronaves.ClasseInputModel
+
+    <div class="card-body">
+        <div class="form-group col-8 row">
+            <label asp-for="Descricao" class="col-sm-2 col-form-label text-right">Descrição:</label>
+            <div class="col-sm-10">
+                <input asp-for="Descricao" class="form-control" placeholder="....">
+                <span class="text-danger" asp-validation-for="Descricao"></span>
+            </div>
+        </div>
+    </div>

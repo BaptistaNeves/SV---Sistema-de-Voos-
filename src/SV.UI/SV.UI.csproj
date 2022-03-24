@@ -6,9 +6,47 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="Admin\Dashboard\Views\Cidades\Delete.cshtml" />
+    <Content Remove="Admin\Dashboard\Views\Funcionarios\Index.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.13" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="5.0.6" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.13">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SV.Application\SV.Application.csproj" />
+    <ProjectReference Include="..\SV.Core\SV.Core.csproj" />
+    <ProjectReference Include="..\SV.Data\SV.Data.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\adminLte\" />
+    <Folder Include="wwwroot\UploadedImages\Admin\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Admin\Dashboard\Views\Cidades\Delete.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Admin\Dashboard\Views\Cidades\Delete.cshtml" />
+    <_ContentIncludedByDefault Remove="Admin\Dashboard\Views\Funcionarios\Index.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Admin\Dashboard\Views\Cidades\Delete.cshtml" />
+    <None Include="Admin\Dashboard\Views\Funcionarios\Index.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Admin\Dashboard\Views\Funcionarios\Index.cshtml" />
   </ItemGroup>
 
 </Project>

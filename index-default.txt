@@ -1,0 +1,179 @@
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">Cidades</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a asp-area="Painel" asp-controller="Home" asp-action="Index">Ínicio</a></li>
+                    <li class="breadcrumb-item active">Cidades</li>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title"><a class="btn-sm btn-success"><i class="fa fa-plus"></i> Nova Cidade</a></h3>
+
+                        <div class="card-tools">
+                            <ul class="pagination pagination-sm float-right">
+                                <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
+                                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- ./card-header -->
+                    <div class="card-body table-responsive p-0" style="height: 300px;">
+                        <table class="table table-head-fixed text-nowrap table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Nome</th>
+                                    <th class="text-center">País</th>
+                                    <th colspan="2"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr data-widget="expandable-table" aria-expanded="false">
+                                    <td>Luanda</td>
+                                    <td class="text-center">Angola</td>
+                                    <td class="text-center">
+                                        <a class="btn-sm btn-primary"><i class="fa fa-edit"></i></a>
+                                        <a class="btn-sm btn-danger"><i class="fa fa-trash"></i></a>
+                                    </td>
+                                </tr>
+                                <tr class="expandable-table">
+                                    <td colspan="3">
+                                        <p>
+                                            A cidade mais cara do mundo!
+                                        </p>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</div>
+<!-- /.content -->
+
+
+
+//function AjaxModal() {
+
+//    $(document).ready(function () {
+//        $(function () {
+
+//            $.ajaxSetup({ cache: false });
+
+//            $("a[data-modal]").on("click",
+//                function (e) {
+//                    $('#myModalContent').load(this.href,
+//                        function () {
+//                            $('#myModal').modal({
+//                                keyboard: true
+//                            },
+//                                'show');
+//                            bindForm(this);
+//                        });
+//                    return false;
+//                });
+
+//        });
+
+//        function bindForm(dialog) {
+//            $('form', dialog).submit(function () {
+//                $.ajax({
+//                    url: this.action,
+//                    type: this.method,
+//                    data: $(this).serialize(),
+//                    success: function (result) {
+//                        if (result.success) {
+//                            $('#myModal').modal('hide');
+//                            $('#NovaCidadeTarget').load(result.url);
+//                        } else {
+//                            $('#myModalContent').html(result);
+//                            bindForm(dialog);
+//                        }
+//                    }
+//                });
+//                return false;
+//            });
+//        }
+//    });
+//}
+
+
+
+
+$(function () {
+    var PlaceHolderElement = $('#PlaceHolder');
+    $('button[data-toggle="ajax-modal"]').click(function (event) {
+
+        var url = $(this).data('url');
+        $.get(url).done(function (data) {
+            PlaceHolderElement.html(data);
+            PlaceHolderElement.find('.modal').modal('show');
+        });
+    });
+
+    PlaceHolderElement.on('click', '[data-save="modal"]', function (event) {
+
+        var form = $(this).parents('.modal').find('form');
+        var actionUrl = form.attr('action');
+        var sendData = form.serialize();
+        $.post(actionUrl, sendData).done(function (data) {
+            PlaceHolderElement.find('.modal').modal('hide');
+        })
+    })
+})
+
+<button type="button" class="btn btn-sm btn-success" data-toggle="ajax-modal" data-target="#modal-cidade"
+                                    data-url="nova-cidade">
+                                <i class="fa fa-plus"></i> Nova Cidade
+                            </button>
+
+
+ <div class="modal fade" id="modal-cidade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Nova Cidade</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="nova-cidade" class="form-horizontal">
+                        <div class="card-body">
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Nome:</label>
+                                <div class="col-sm-9">
+                                    <input class="form-control" placeholder="Exemplo: Luanda">
+                                    <span></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer text-right">
+                            <button type="button" class="btn btn-info">Salvar</button>
+                            <button type="button" class="btn btn-default">Fechar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
