@@ -1,19 +1,19 @@
-﻿@model SV.UI.Admin.Dashboard.ViewModels.Funcionarios.FuncionarioViewModel
+﻿@model SV.Application.InputModels.Usuarios.UsuarioInputModel
 
 @{
-    ViewData["Title"] = Model.FuncionarioModel.Nome;
+    ViewData["Title"] = "Novo úsuario";
 }
 
 <div class="content-header">
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0">Model.FuncionarioModel.Nome</h1>
+                <h1 class="m-0">Novo Assento</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a asp-area="Painel" asp-controller="Home" asp-action="Index">Ínicio</a></li>
-                    <li class="breadcrumb-item active">@Model.FuncionarioModel.Nome</li>
+                    <li class="breadcrumb-item active">Novo úsuario</li>
                 </ol>
             </div>
         </div>
@@ -26,17 +26,14 @@
             <div class="col-12">
 
                 <div class="card">
-                    <form asp-action="Edit" enctype="multipart/form-data">
-
-                        @await Component.InvokeAsync(typeof(SV.UI.Admin.Dashboard.Extensions.SummaryViewComponent))
-
-                        <input type="hidden" asp-for="@Model.FuncionarioModel.Id" />
+                    <form asp-action="Create">
+                        <@await Component.InvokeAsync(typeof(SV.UI.Admin.Dashboard.Extensions.SummaryViewComponent))
 
                         <partial name="_UpSert" model="Model" />
 
                         <div class="card-footer">
                             <div class="col-10 text-center">
-                                <input type="submit" class="btn btn-info" value="Atualizar">
+                                <input type="submit" class="btn btn-info" value="Salvar">
                                 <a asp-action="Index" class="btn btn-default">Voltar</a>
                             </div>
                         </div>

@@ -26,9 +26,9 @@ namespace SV.UI
 
             services.AddScoped<INotifier, Notifier>();
 
-            services.AddApplicationDependecyInjection();
-
             services.AddDataDependecyInjection(Configuration);
+
+            services.AddApplicationDependecyInjection();
 
             services.Configure<RazorViewEngineOptions>(options =>
             {
@@ -37,6 +37,8 @@ namespace SV.UI
                 options.AreaViewLocationFormats.Add("/Admin/{2}/Views/Shared/{0}.cshtml");
                 options.AreaViewLocationFormats.Add("/Views/Shared/{0}.cshtml");
             });
+
+           
 
         }
 

@@ -27,13 +27,13 @@ namespace SV.Application.Services.Funcionarios
         public async Task<FuncionarioInputModel> ObterFuncionarioPorId(Guid id)
         {
             return _mapper.Map<FuncionarioInputModel>
-                (await _funcionarioRepository.FindAsync(id));
+                (await _funcionarioRepository.FirstOrDefaultAsync(f => f.Id == id, isTracking: false));
         }
 
         public async Task<IEnumerable<Funcionario>> ObterTodosFuncionarios()
         {
             return _mapper.Map<IEnumerable<Funcionario>>
-                 (await _funcionarioRepository.GetAllAsync());
+                 (await _funcionarioRepository.GetAllAsync(inCludeProperties: "CategoriaFuncionario"));
         }
 
         public async Task Inserir(FuncionarioInputModel funcionarioModel)
@@ -59,7 +59,7 @@ namespace SV.Application.Services.Funcionarios
             var funcionario = _mapper.Map<Funcionario>(funcionarioModel);
 
             if (await _funcionarioRepository.FirstOrDefaultAsync(a =>
-                  a.Nome == funcionarioModel.Nome && a.Id != funcionarioModel.Id) != null)
+                  a.Nome == funcionarioModel.Nome && a.Id != funcionarioModel.Id, isTracking: false) != null)
             {
                 Notify("Já existe umFuncionario Cadastrado com este nome!");
                 return;

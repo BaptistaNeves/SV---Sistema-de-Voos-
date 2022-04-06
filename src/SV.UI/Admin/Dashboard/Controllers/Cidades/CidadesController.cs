@@ -67,7 +67,7 @@ namespace SV.UI.Admin.Dashboard.Controllers.Cidades
         }
 
 
-        [HttpPost]
+        [HttpPut]
         [Route("admin/editar-cidade")]
         public async Task<IActionResult> EditPost(CidadeInputModel cidadeModel)
         {

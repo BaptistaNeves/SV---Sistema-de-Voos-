@@ -1,19 +1,19 @@
-﻿@model SV.UI.Admin.Dashboard.ViewModels.Funcionarios.FuncionarioViewModel
+﻿@model SV.Application.InputModels.Usuarios.UsuarioInputModel
 
 @{
-    ViewData["Title"] = Model.FuncionarioModel.Nome;
+    ViewData["Title"] =  Model.NomeDeUtilizador;
 }
 
 <div class="content-header">
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0">Model.FuncionarioModel.Nome</h1>
+                <h1 class="m-0">Nova Aeronave</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a asp-area="Painel" asp-controller="Home" asp-action="Index">Ínicio</a></li>
-                    <li class="breadcrumb-item active">@Model.FuncionarioModel.Nome</li>
+                    <li class="breadcrumb-item active">@Model.NomeDeUtilizador</li>
                 </ol>
             </div>
         </div>
@@ -26,11 +26,10 @@
             <div class="col-12">
 
                 <div class="card">
-                    <form asp-action="Edit" enctype="multipart/form-data">
-
+                    <form asp-action="Edit">
                         @await Component.InvokeAsync(typeof(SV.UI.Admin.Dashboard.Extensions.SummaryViewComponent))
 
-                        <input type="hidden" asp-for="@Model.FuncionarioModel.Id" />
+                        <input type="hidden" asp-for="@Model.Id" />
 
                         <partial name="_UpSert" model="Model" />
 

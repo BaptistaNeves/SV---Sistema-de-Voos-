@@ -1,0 +1,50 @@
+﻿@model SV.Application.InputModels.Usuarios.UsuarioInputModel
+
+<div class="card-body">
+    <div class="form-group row">
+        <label asp-for="@Model.NomeDeUtilizador" class="col-sm-2 col-form-label text-right">Nome:</label>
+        <div class="col-sm-6">
+            <input asp-for="@Model.NomeDeUtilizador" class="form-control" placeholder="....">
+            <span class="text-danger" asp-validation-for="@Model.NomeDeUtilizador"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label asp-for="@Model.Email" class="col-sm-2 col-form-label text-right">Email:</label>
+        <div class="col-sm-6">
+            <input asp-for="@Model.Email" class="form-control" placeholder="....">
+            <span class="text-danger" asp-validation-for="@Model.Email"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label asp-for="@Model.Telefone" class="col-sm-2 col-form-label text-right">Telefone:</label>
+        <div class="col-sm-6">
+            <input asp-for="@Model.Telefone" class="form-control" placeholder="....">
+            <span class="text-danger" asp-validation-for="@Model.Telefone"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label asp-for="@Model.Perfil" class="col-sm-2 col-form-label text-right">Perfil:</label>
+        <div class="col-sm-6">
+            <select class="form-control" asp-for="@Model.Perfil">
+                <option selected disabled>--Seleccione o perfil--</option>
+                <option value="Operador">Operador</option>
+                <option value="Admin">Admin</option>
+            </select>
+            <span class="text-danger" asp-validation-for="@Model.Perfil"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label asp-for="@Model.Senha" class="col-sm-2 col-form-label text-right">Senha:</label>
+        <div class="col-sm-6">
+            <input type="password" asp-for="@Model.Senha" class="form-control">
+            <span class="text-danger" asp-validation-for="@Model.Senha"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label asp-for="@Model.Perfil" class="col-sm-2 col-form-label text-right">Confirmar senha:</label>
+        <div class="col-sm-6">
+            <input type="password" asp-for="@Model.ConfirmarSenha" class="form-control">
+            <span class="text-danger" asp-validation-for="@Model.ConfirmarSenha"></span>
+        </div>
+    </div>
+</div>

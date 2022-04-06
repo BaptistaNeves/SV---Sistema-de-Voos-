@@ -102,10 +102,14 @@ namespace SV.UI.Admin.Dashboard.Controllers.Funcionarios
         }
 
 
-        [HttpPut]
+        [HttpPost]
         [Route("admin/editar-funcionario/{id:guid}")]
         public async Task<IActionResult> Edit(Guid id, FuncionarioInputModel funcionarioModel)
         {
+            var funcionario = await _funcionarioService.ObterFuncionarioPorId(id);
+
+            if (funcionario == null) return NotFound();
+
             if (!ModelState.IsValid)
             {
                 return View(new FuncionarioViewModel
@@ -117,7 +121,7 @@ namespace SV.UI.Admin.Dashboard.Controllers.Funcionarios
 
             var imgPrefixo = Guid.NewGuid() + "_";
 
-            var imagemAntiga = funcionarioModel.Imagem;
+            var imagemAntiga = funcionario.Imagem;
 
             funcionarioModel.Imagem = imgPrefixo + Path.GetFileName(funcionarioModel.ImagemUpload.FileName.Trim());
 

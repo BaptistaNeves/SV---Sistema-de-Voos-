@@ -81,7 +81,7 @@ namespace SV.UI.Admin.Dashboard.Controllers.Aeronaves
         }
 
 
-        [HttpPost, ActionName("Edit")]
+        [HttpPut, ActionName("Edit")]
         [Route("admin/editar-assento/{id:guid}")]
         public async Task<IActionResult> EditPost(Guid id, AssentoInputModel assentoModel)
         {

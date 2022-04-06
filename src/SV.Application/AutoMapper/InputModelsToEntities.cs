@@ -3,10 +3,13 @@ using SV.Application.InputModels.Aeronaves;
 using SV.Application.InputModels.Aeroportos;
 using SV.Application.InputModels.Cidades;
 using SV.Application.InputModels.Funcionarios;
+using SV.Application.InputModels.Usuarios;
+using SV.Core.DTOs.Usuarios;
 using SV.Core.Entities.Aeronaves;
 using SV.Core.Entities.Aeroportos;
 using SV.Core.Entities.Cidades;
 using SV.Core.Entities.Funcionarios;
+using SV.Core.Entities.Usuarios;
 
 namespace SV.Application.AutoMapper
 {
@@ -24,6 +27,10 @@ namespace SV.Application.AutoMapper
 
             CreateMap<CategoriaFuncionarioInputModel, CategoriaFuncionario>().ReverseMap();
             CreateMap<FuncionarioInputModel, Funcionario>().ReverseMap();
+
+            CreateMap<UsuarioInputModel, Usuario>().ReverseMap();
+
+            CreateMap<UsuarioDto, UsuarioInputModel>();
         }
     }
 }
