@@ -11,8 +11,11 @@ namespace SV.Core.Interfaces.Repositories.Usuarios
         Task<UsuarioDto> GetById(Guid id);
         Task<UsuarioDto> GetByEmail(string email);
         Task<IEnumerable<UsuarioDto>> GetAll();
+        Task<IEnumerable<UsuarioDto>> GetAllUsersLessLogged(Guid id);
         Task Add(Usuario entity);
         Task Update(Usuario entity);
         Task Remove(Guid id);
+        Task<bool> Login(string email, string senha);
+        Task Logout();
     }
 }

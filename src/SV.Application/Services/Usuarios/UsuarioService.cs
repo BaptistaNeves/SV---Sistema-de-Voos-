@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using SV.Application.InputModels.Login;
 using SV.Application.InputModels.Usuarios;
 using SV.Application.Interfaces.Services.Usuarios;
 using SV.Application.Services.Base;
@@ -30,6 +31,11 @@ namespace SV.Application.Services.Usuarios
             return await _usuarioRepository.GetAll();
         }
 
+        public async Task<IEnumerable<UsuarioDto>> ObterTodosUsuariosMenosLogado(Guid id)
+        {
+            return await _usuarioRepository.GetAllUsersLessLogged(id);
+        }
+
         public async Task<UsuarioDto> ObterUsuarioPorEmail(string email)
         {
             return await _usuarioRepository.GetByEmail(email);
@@ -51,7 +57,7 @@ namespace SV.Application.Services.Usuarios
 
         public async Task Atualizar(UsuarioInputModel usuarioModel)
         {
-            if (!IsValide(new UsuarioValidation(), usuarioModel)) return;
+            if (!IsValide(new UpdateUsuarioValidation(), usuarioModel)) return;
 
             var usuario = _mapper.Map<Usuario>(usuarioModel);
 
@@ -63,9 +69,22 @@ namespace SV.Application.Services.Usuarios
             await _usuarioRepository.Remove(id);
         }
 
+        public async Task<bool> Login(LoginInputModel login)
+        {
+            if(await _usuarioRepository.Login(login.Email, login.Senha)) return true;
+
+            return false;
+        }
+
+        public async Task Logout()
+        {
+            await _usuarioRepository.Logout();
+        }
+
         public void Dispose()
         {
             _usuarioRepository?.Dispose();
         }
+
     }
 }

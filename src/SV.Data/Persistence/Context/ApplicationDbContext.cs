@@ -5,6 +5,7 @@ using SV.Core.Entities.Aeronaves;
 using SV.Core.Entities.Aeroportos;
 using SV.Core.Entities.Cidades;
 using SV.Core.Entities.Funcionarios;
+using SV.Core.Entities.Voos;
 using SV.Data.Persistence.Models.Usuarios;
 using System;
 
@@ -44,6 +45,9 @@ namespace SV.Data.Persistence.Context
         public DbSet<Classe> Classes { get; set; }
         public DbSet<Funcionario> Funcionarios { get; set; }
         public DbSet<CategoriaFuncionario> CategoriasFuncionario { get; set; }
-        
+
+        public DbSet<TipoDeVoo> TiposDeVoo { get; set; }
+        public DbSet<Voo> Voos { get; set; }
+
     }
 }

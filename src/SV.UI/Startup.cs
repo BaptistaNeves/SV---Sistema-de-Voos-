@@ -5,9 +5,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SV.Application.Extension;
+using SV.Application.Interfaces.Common;
 using SV.Core.Interfaces.Notifications;
 using SV.Core.Notifications;
 using SV.Data.Extension;
+using SV.UI.Services;
 
 namespace SV.UI
 {
@@ -29,6 +31,14 @@ namespace SV.UI
             services.AddDataDependecyInjection(Configuration);
 
             services.AddApplicationDependecyInjection();
+
+            services.AddScoped<ICurrentUserService, CurrentUserService>();
+
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.LoginPath = "/login";
+                options.AccessDeniedPath = "/admin/acesso-negado";
+            });
 
             services.Configure<RazorViewEngineOptions>(options =>
             {
@@ -58,6 +68,7 @@ namespace SV.UI
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

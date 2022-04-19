@@ -1,0 +1,18 @@
+﻿@model SV.Application.InputModels.Voos.TipoDeVooInputModel
+
+<div class="card-body">
+    <div class="form-group row">
+        <label asp-for="@Model.Nome" class="col-sm-2 col-form-label text-right">Nome:</label>
+        <div class="col-sm-6">
+            <input asp-for="@Model.Nome" class="form-control" placeholder="....">
+            <span class="text-danger" asp-validation-for="@Model.Nome"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label asp-for="@Model.Descricao" class="col-sm-2 col-form-label text-right">Descrição:</label>
+        <div class="col-sm-6">
+            <textarea class="form-control-plaintext form-control" asp-for="@Model.Descricao"></textarea>
+            <span class="text-danger" asp-validation-for="@Model.Descricao"></span>
+        </div>
+    </div>
+</div>

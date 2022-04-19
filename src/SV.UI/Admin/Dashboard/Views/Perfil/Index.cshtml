@@ -1,0 +1,191 @@
+﻿@model SV.Application.InputModels.Usuarios.UsuarioInputModel
+
+@{
+    ViewData["Title"] = "Meu perfil";
+}
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">Painel</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a asp-area="Painel" asp-controller="Home" asp-action="Index">Painel</a></li>
+                    <li class="breadcrumb-item active">Perfil</li>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-3">
+
+            <!-- Profile Image -->
+            <div class="card card-primary card-outline">
+              <div class="card-body box-profile">
+                <h3 class="profile-username text-center">@Model.NomeDeUtilizador</h3>
+                @if (@Model.Perfil == "Admin")
+                {
+                    <p class="text-muted text-center">Administrador</p>
+                }
+                else
+                {
+                    <p class="text-muted text-center">Operador(a)</p>
+                }
+                        
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+          <div class="col-md-9">
+            <div class="card">
+              <div class="card-header p-2">
+                <ul class="nav nav-pills">
+                  <li class="nav-item"><a class="nav-link active" href="#settings" data-toggle="tab">Editar informações</a></li>
+                </ul>
+              </div><!-- /.card-header -->
+              <div class="card-body">
+                <div class="tab-content">
+                 
+                  <div class="active tab-pane" id="settings">
+                    <form asp-action="Index" class="form-horizontal">
+                     @await Component.InvokeAsync(typeof(SV.UI.Admin.Dashboard.Extensions.SummaryViewComponent))
+                     
+                     <input type="hidden" asp-for="@Model.Id" />
+
+                      <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">Nome</label>
+                        <div class="col-sm-9">
+                          <input type="text" asp-for="@Model.NomeDeUtilizador" class="form-control" placeholder="Nome">
+                          <span class="text-danger" asp-validation-for="@Model.NomeDeUtilizador"></span>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">Email</label>
+                        <div class="col-sm-9">
+                          <input type="email" asp-for="@Model.Email" class="form-control" placeholder="Email">
+                          <span class="text-danger" asp-validation-for="@Model.Email"></span>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">Telefone</label>
+                        <div class="col-sm-9">
+                          <input type="text" asp-for="@Model.Telefone" class="form-control" placeholder="Telefone">
+                          <span class="text-danger" asp-validation-for="@Model.Telefone"></span>
+                        </div>
+                      </div>
+                      @if(@Model.Perfil != "Operador") 
+                      {
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Perfil</label>
+                                <div class="col-sm-9">
+                                    <select asp-for="@Model.Perfil" class="form-control">
+                                        <option selected disabled>--Seleccione o perfil--</option>
+                                        <option value="Operador">Operador</option>
+                                        <option value="Admin">Admin</option>
+                                    </select>
+                                    <span class="text-danger" asp-validation-for="@Model.Perfil"></span>
+                                </div>
+                            </div>           
+                        }
+
+                      <div class="form-group row">
+                        <div class="col-sm-3"></div>
+                        <div class="col-sm-9">
+                            <input asp-for="@Model.AlterarSenha" type="checkbox" id="ckAlterarSenha">
+                            <label class="">Alterar senha?</label>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">Senha actual</label>
+                        <div class="col-sm-9">
+                            <input type="password" asp-for="@Model.SenhaAntiga" id="senhaAntigaInput" class="form-control" disabled="true">
+                           <span class="text-danger" asp-validation-for="@Model.SenhaAntiga"></span>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">Nova senha</label>
+                        <div class="col-sm-9">
+                            <input asp-for="@Model.Senha" type="password" id="senhaInput" class="form-control" disabled="true">
+                            <span class="text-danger" asp-validation-for="@Model.Senha"></span>
+                        </div>
+                      </div>
+                      <div class="form-group row align-items-center">
+                        <label class="col-sm-3 col-form-label">Confirmar senha</label>
+                        <div class="col-sm-9">
+                            <input asp-for="@Model.ConfirmarSenha" type="password" id="confirmarSenhaInput" class="form-control" disabled="true">
+                            <span class="text-danger" asp-validation-for="@Model.ConfirmarSenha"></span>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <div class="col-sm-12 row justify-content-end">
+                            <input type="submit" class="btn btn-info" value="Atualizar">
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                  <!-- /.tab-pane -->
+                </div>
+                <!-- /.tab-content -->
+              </div><!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+    </div><!-- /.container-fluid -->
+</div>
+<!-- /.content -->
+
+@section scripts
+{
+    
+    <script type="text/javascript">
+
+        function verificarEstadoDosCamposSenha()
+        {
+             var ckAlterarSenha = document.getElementById('ckAlterarSenha');
+
+            if(ckAlterarSenha.checked) {
+                    senhaInput.disabled = '';
+                    confirmarSenhaInput.disabled = '';
+                    senhaAntigaInput.disabled = '' ;
+                } else {
+                    senhaInput.disabled = 'false';
+                    confirmarSenhaInput.disabled = 'false';
+                    senhaAntigaInput.disabled = 'false';
+                }
+        }
+
+        (function() {
+            var ckAlterarSenha = document.getElementById('ckAlterarSenha');
+            var senhaInput = document.getElementById('senhaInput');
+            var confirmarSenhaInput = document.getElementById('confirmarSenhaInput');
+            var senhaAntigaInput = document.getElementById('senhaAntigaInput');
+            
+            verificarEstadoDosCamposSenha();
+
+            ckAlterarSenha.addEventListener('click', function(){
+                if(this.checked) {
+                    senhaInput.disabled = '';
+                    confirmarSenhaInput.disabled = '';
+                    senhaAntigaInput.disabled = '' ;
+                } else {
+                    senhaInput.disabled = 'false';
+                    confirmarSenhaInput.disabled = 'false';
+                    senhaAntigaInput.disabled = 'false';
+                }
+            });
+        })(); 
+    </script>
+
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+}

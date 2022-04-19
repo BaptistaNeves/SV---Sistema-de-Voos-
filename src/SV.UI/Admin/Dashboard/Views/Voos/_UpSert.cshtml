@@ -1,0 +1,95 @@
+﻿@model SV.UI.Admin.Dashboard.ViewModels.Voos.VooViewModel
+
+<div class="card-body pt-3">
+    <div class="form-group row">
+        <label asp-for="@Model.VooInputModel.Descricao" class="col-sm-4 col-form-label text-left">Descrição:</label>
+        <div class="col-sm-6 row justify-content-start">
+            <input asp-for="@Model.VooInputModel.Descricao" class="form-control" placeholder="....">
+            <span class="text-danger" asp-validation-for="@Model.VooInputModel.Descricao"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label asp-for="@Model.VooInputModel.AeroportoDeOrigem" class="col-sm-4 col-form-label text-left">Aeroporto de origem:</label>
+        <div class="col-sm-6 row justify-content-start">
+            <select class="form-control" asp-for="@Model.VooInputModel.AeroportoDeOrigem" asp-items="@(new SelectList(Model.Aeroportos, "Id", "Nome"))">
+                <option disabled selected>--Selecione o aeroporto de origem--</option>
+            </select>
+            <span class="text-danger" asp-validation-for="@Model.VooInputModel.AeroportoDeOrigem"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label asp-for="@Model.VooInputModel.AeroportoDestino" class="col-sm-4 col-form-label text-left">Aeroporto destino:</label>
+        <div class="col-sm-6 row justify-content-start">
+            <select class="form-control" asp-for="@Model.VooInputModel.AeroportoDestino" asp-items="@(new SelectList(Model.Aeroportos, "Id", "Nome"))">
+                <option disabled selected>--Selecione o aeroporto de destino--</option>
+            </select>
+            <span class="text-danger" asp-validation-for="@Model.VooInputModel.AeroportoDestino"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label asp-for="@Model.VooInputModel.TipoDeVooId" class="col-sm-4 col-form-label text-left">Tipo de voo:</label>
+        <div class="col-sm-6 row justify-content-start">
+            <select class="form-control" asp-for="@Model.VooInputModel.TipoDeVooId" asp-items="@(new SelectList(Model.TiposDeVoo, "Id", "Nome"))">
+                <option disabled selected>--Selecione o tipo de voo--</option>
+            </select>
+            <span class="text-danger" asp-validation-for="@Model.VooInputModel.TipoDeVooId"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label asp-for="@Model.VooInputModel.AeronaveId" class="col-sm-4 col-form-label text-left">Aeronave:</label>
+        <div class="col-sm-6 row justify-content-start">
+            <select class="form-control" asp-for="@Model.VooInputModel.AeronaveId" asp-items="@(new SelectList(Model.Aeronaves, "Id", "Modelo"))">
+                <option disabled selected>--Selecione a aeronave--</option>
+            </select>
+            <span class="text-danger" asp-validation-for="@Model.VooInputModel.AeronaveId"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label asp-for="@Model.VooInputModel.HoraDePartida" class="col-sm-4 col-form-label text-left">Hora de partida:</label>
+        <div class="col-sm-6 row justify-content-start">
+            <div class="input-group date" id="timepicker" data-target-input="nearest">
+                <input asp-for="@Model.VooInputModel.HoraDePartida" type="text" class="form-control datetimepicker-input" data-target="#timepicker"/>
+                <div class="input-group-append" data-target="#timepicker" data-toggle="datetimepicker">
+                    <div class="input-group-text"><i class="far fa-clock"></i></div>
+                </div>
+            </div>
+            <span class="text-danger" asp-validation-for="@Model.VooInputModel.HoraDePartida"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label asp-for="@Model.VooInputModel.DataDePartida" class="col-sm-4 col-form-label text-left">Data de partida:</label>
+        <div class="col-sm-6 row justify-content-start">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                </div>
+                <input asp-for="@Model.VooInputModel.DataDePartida" class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask>
+            </div>
+            <span class="text-danger" asp-validation-for="@Model.VooInputModel.DataDePartida"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label asp-for="@Model.VooInputModel.PrevisaoDeChegada" class="col-sm-4 col-form-label text-left">Previsão de chegada:</label>
+        <div class="col-sm-6 row justify-content-start">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                </div>
+                <input asp-for="@Model.VooInputModel.PrevisaoDeChegada" class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask>
+            </div>
+            <span class="text-danger" asp-validation-for="@Model.VooInputModel.PrevisaoDeChegada"></span>
+        </div>
+    </div>
+     <div class="form-group row">
+        <label asp-for="@Model.VooInputModel.PrevisaoDeChegadaAoDestino" class="col-sm-4 col-form-label text-left">Previsão de chegada ao destino:</label>
+        <div class="col-sm-6 row justify-content-start">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                </div>
+                <input asp-for="@Model.VooInputModel.PrevisaoDeChegadaAoDestino" class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask>
+            </div>
+            <span class="text-danger" asp-validation-for="@Model.VooInputModel.PrevisaoDeChegadaAoDestino"></span>
+        </div>
+    </div>
+</div>

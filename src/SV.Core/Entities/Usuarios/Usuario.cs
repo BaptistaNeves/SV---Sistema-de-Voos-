@@ -10,5 +10,6 @@ namespace SV.Core.Entities.Usuarios
         public string Telefone { get; set; }
         public string Perfil { get; set; }
         public string Senha { get; set; }
+        public string SenhaAntiga { get; set; }
     }
 }

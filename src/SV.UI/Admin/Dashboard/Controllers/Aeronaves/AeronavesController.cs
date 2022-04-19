@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using SV.Application.InputModels.Aeronaves;
 using SV.Application.Interfaces.Services.Aeronaves;
 using SV.Core.Interfaces.Notifications;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 namespace SV.UI.Admin.Dashboard.Controllers.Aeronaves
 {
     [Area("Dashboard")]
+    [Authorize(Roles = "Operador,Admin")]
     public class AeronavesController : MainController
     {
         private readonly IAeronaveService _aeronaveService;

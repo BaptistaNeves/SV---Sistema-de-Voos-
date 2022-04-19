@@ -1,0 +1,57 @@
+﻿@{
+    ViewData["Title"] = "Acesso negado";
+}
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">Painel</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a asp-area="Painel" asp-controller="Home" asp-action="Index">Painel</a></li>
+                    <li class="breadcrumb-item active">Ínicio</li>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+
+<div class="content">
+    <div class="container-fluid">
+       <div class="error-page">
+        <h2 class="headline text-danger"><i class="fa fa-lock"></i></h2>
+
+        <div class="error-content">
+          <h3><i class="fas fa-exclamation-triangle text-danger"></i> Oops! Seu acesso foi negado.</h3>
+
+          <p>
+            Entre em contacto com o Administrador para mais informações. Enquanto isso,
+            você pode retornar ao <a asp-controller="Home" asp-action="Index">Painel</a> ou tentar usar o formulário de pesquisa.
+          </p>
+
+          <div class="input-group" data-widget="sidebar-search">
+            <input class="form-control form-control-sidebar" type="search" placeholder="Procurar" aria-label="Search">
+            <div class="input-group-append">
+                <button class="btn btn-danger">
+                    <i class="fas fa-search fa-fw"></i>
+                </button>
+            </div>
+           </div>
+
+          @*<form class="search-form">
+            <div class="input-group">
+              <input type="text" name="search" class="form-control" placeholder="Search">
+
+              <div class="input-group-append">
+                <button type="submit" name="submit" class="btn btn-danger"><i class="fas fa-search"></i>
+                </button>
+              </div>
+            </div>
+          </form>*@
+        </div>
+      </div>
+    </div><!-- /.container-fluid -->
+</div>
+<!-- /.content -->

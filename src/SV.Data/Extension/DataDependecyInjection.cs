@@ -7,6 +7,7 @@ using SV.Core.Interfaces.Repositories.Aeroportos;
 using SV.Core.Interfaces.Repositories.Cidades;
 using SV.Core.Interfaces.Repositories.Funcionarios;
 using SV.Core.Interfaces.Repositories.Usuarios;
+using SV.Core.Interfaces.Repositories.Voos;
 using SV.Data.Persistence.Context;
 using SV.Data.Persistence.Models.Usuarios;
 using SV.Data.Persistence.Repositories.Aeronaves;
@@ -14,6 +15,7 @@ using SV.Data.Persistence.Repositories.Aeroportos;
 using SV.Data.Persistence.Repositories.Cidades;
 using SV.Data.Persistence.Repositories.Funcionarios;
 using SV.Data.Persistence.Repositories.Usuarios;
+using SV.Data.Persistence.Repositories.Voos;
 using System;
 
 namespace SV.Data.Extension
@@ -38,6 +40,9 @@ namespace SV.Data.Extension
             services.AddScoped<IFuncionarioRepository, FuncionarioRepository>();
 
             services.AddScoped<IUsuarioRepository, UsuarioRepository>();
+
+            services.AddScoped<ITipoDeVooRepository, TipoDeVooRepository>();
+            services.AddScoped<IVooRepository, VooRepository>();
 
             services.AddIdentity<AppUser, AppRole>()
                 .AddRoles<AppRole>()

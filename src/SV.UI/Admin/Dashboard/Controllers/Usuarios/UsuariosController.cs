@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using SV.Application.InputModels.Usuarios;
+using SV.Application.Interfaces.Common;
 using SV.Application.Interfaces.Services.Usuarios;
 using SV.Core.Interfaces.Notifications;
 using SV.UI.Base;
@@ -10,21 +12,26 @@ namespace SV.UI.Admin.Dashboard.Controllers.Usuarios
 {
 
     [Area("Dashboard")]
+    [Authorize(Roles = "Admin")]
     public class UsuariosController : MainController
     {
         private readonly IUsuarioService _usuarioService;
+        private readonly ICurrentUserService _currentUserService;
 
         public UsuariosController(INotifier notifier,
-                                  IUsuarioService usuarioService) : base(notifier)
+                                  IUsuarioService usuarioService, 
+                                  ICurrentUserService currentUserService) : base(notifier)
         {
             _usuarioService = usuarioService;
+            _currentUserService = currentUserService;
         }
 
         [HttpGet]
         [Route("admin/usuarios")]
         public async Task<IActionResult> Index()
         {
-            return View(await _usuarioService.ObterTodosUsuarios());
+            return View(await _usuarioService.
+                ObterTodosUsuariosMenosLogado(Guid.Parse(_currentUserService.UserId)));
         }
 
         [HttpGet]

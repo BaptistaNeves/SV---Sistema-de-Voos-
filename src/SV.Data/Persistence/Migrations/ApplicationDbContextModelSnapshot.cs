@@ -307,6 +307,77 @@ namespace SV.Data.Persistence.Migrations
                     b.ToTable("Funcionarios");
                 });
 
+            modelBuilder.Entity("SV.Core.Entities.Voos.TipoDeVoo", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Descricao")
+                        .HasColumnType("varchar(max)");
+
+                    b.Property<string>("Nome")
+                        .IsRequired()
+                        .HasColumnType("varchar(50)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("TiposDeVoo");
+                });
+
+            modelBuilder.Entity("SV.Core.Entities.Voos.Voo", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("AeronaveId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("AeroportoDeOrigem")
+                        .IsRequired()
+                        .HasColumnType("varchar(100)");
+
+                    b.Property<string>("AeroportoDestino")
+                        .IsRequired()
+                        .HasColumnType("varchar(100)");
+
+                    b.Property<Guid?>("AeroportoId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("DataDePartida")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Descricao")
+                        .IsRequired()
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<bool>("Estado")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("HoraDePartida")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("PrevisaoDeChegada")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("PrevisaoDeChegadaAoDestino")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("TipoDeVooId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AeronaveId");
+
+                    b.HasIndex("AeroportoId");
+
+                    b.HasIndex("TipoDeVooId");
+
+                    b.ToTable("Voos");
+                });
+
             modelBuilder.Entity("SV.Data.Persistence.Models.Usuarios.AppRole", b =>
                 {
                     b.Property<Guid>("Id")
@@ -494,6 +565,31 @@ namespace SV.Data.Persistence.Migrations
                     b.Navigation("CategoriaFuncionario");
                 });
 
+            modelBuilder.Entity("SV.Core.Entities.Voos.Voo", b =>
+                {
+                    b.HasOne("SV.Core.Entities.Aeronaves.Aeronave", "Aeronave")
+                        .WithMany()
+                        .HasForeignKey("AeronaveId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SV.Core.Entities.Aeroportos.Aeroporto", "Aeroporto")
+                        .WithMany()
+                        .HasForeignKey("AeroportoId");
+
+                    b.HasOne("SV.Core.Entities.Voos.TipoDeVoo", "TipoDeVoo")
+                        .WithMany("Voos")
+                        .HasForeignKey("TipoDeVooId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Aeronave");
+
+                    b.Navigation("Aeroporto");
+
+                    b.Navigation("TipoDeVoo");
+                });
+
             modelBuilder.Entity("SV.Data.Persistence.Models.Usuarios.AppUserRole", b =>
                 {
                     b.HasOne("SV.Data.Persistence.Models.Usuarios.AppRole", "Role")
@@ -531,6 +627,11 @@ namespace SV.Data.Persistence.Migrations
             modelBuilder.Entity("SV.Core.Entities.Funcionarios.CategoriaFuncionario", b =>
                 {
                     b.Navigation("Funcionarios");
+                });
+
+            modelBuilder.Entity("SV.Core.Entities.Voos.TipoDeVoo", b =>
+                {
+                    b.Navigation("Voos");
                 });
 
             modelBuilder.Entity("SV.Data.Persistence.Models.Usuarios.AppRole", b =>

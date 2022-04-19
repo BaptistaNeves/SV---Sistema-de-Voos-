@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SV.Application.InputModels.Aeronaves;
 using SV.Application.Interfaces.Services.Aeronaves;
@@ -11,6 +12,7 @@ using System.Threading.Tasks;
 namespace SV.UI.Admin.Dashboard.Controllers.Aeronaves
 {
     [Area("Dashboard")]
+    [Authorize(Roles = "Operador,Admin")]
     public class AssentosController : MainController
     {
         private readonly IAssentoService _assentoService;

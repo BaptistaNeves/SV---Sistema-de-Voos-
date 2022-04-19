@@ -74,15 +74,14 @@ go
 create table Voo
 (
 	Id uniqueidentifier not null,
-	Nome varchar(30) null,
 	Descricao varchar(max) null,
 	HoraDePartida datetime null,
 	PrevisaoDeChegada datetime null,
+	PrevisaoDeChegadaAoDestino datetime null,
 	TipoVooId uniqueidentifier null,
-	AeroportoOrigemId uniqueidentifier null,
+	AeroportoDeOrigemId uniqueidentifier null,
 	AeroportoDestinoId uniqueidentifier null,
 	AeronaveId uniqueidentifier null,
-	PilotoId uniqueidentifier null,
 	Estado bit null, /*LIBERADO OU NÃO PARA RESERVAS*/
 	constraint[VooChavePrimaria] primary key(Id)
 )
@@ -106,6 +105,13 @@ go
 alter table Voo 
 	add constraint[VooTipoVooChaveEstrangeira] foreign key(TipoVooId) 
 	references TipoVoo(Id)
+go
+create table FuncionariosDoVoo
+(
+	Id uniqueidentifier not null,
+	Nome varchar(100) null,
+	Funcao varchar(100) null
+)
 go
 create table Lugar
 (
@@ -162,9 +168,25 @@ create table ReservaItem
 go
 alter table ReservaItem
 	add constraint[ReservaItemVooChaveEstrangeira] foreign key(VooId)
-	references Voo(Id) onairlines
+	references Voo(Id)
 go
 alter table ReservaItem
 	add constraint[ReservaItemLugarChaveEstrangeira] foreign key(LugarId)
 	references Lugar(Id)
 go
+
+create table Bilhete
+(
+	Id uniqueidentifier not null,
+	ClienteId uniqueidentifier null,
+	AssentoId uniqueidentifier  null,
+	PrecoCusto decimal(8,2) null,
+)
+go
+
+
+Cada aeronave pode possuir mais de uma cabine
+Uma cabine para classe Executiva
+E outra cabine para classe Economica
+Na classe economica a cabine pode ser distribuida por fileiras
+Na classe executiva não é distribuida por fileiras, mas por assentos individuais 

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SV.Application.InputModels.Funcionarios;
 using SV.Application.Interfaces.Services.Funcionarios;
@@ -12,6 +13,7 @@ using System.Threading.Tasks;
 namespace SV.UI.Admin.Dashboard.Controllers.Funcionarios
 {
     [Area("Dashboard")]
+    [Authorize(Roles = "Admin")]
     public class FuncionariosController : MainController
     {
         private readonly IFuncionarioService _funcionarioService;

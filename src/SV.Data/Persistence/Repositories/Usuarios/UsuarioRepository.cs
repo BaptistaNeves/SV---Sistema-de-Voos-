@@ -18,23 +18,41 @@ namespace SV.Data.Persistence.Repositories.Usuarios
     {
         private readonly UserManager<AppUser> _userManager;
         private readonly RoleManager<AppRole> _roleManager;
+        private readonly SignInManager<AppUser> _signInManager;
         private readonly ApplicationDbContext _context;
         private readonly INotifier _notifier;
 
         public UsuarioRepository(UserManager<AppUser> userManager,
                                  RoleManager<AppRole> roleManager,
-                                 ApplicationDbContext context, 
-                                 INotifier notifier)
+                                 ApplicationDbContext context,
+                                 INotifier notifier, 
+                                 SignInManager<AppUser> signInManager)
         {
             _userManager = userManager;
             _roleManager = roleManager;
             _notifier = notifier;
             _context = context;
+            _signInManager = signInManager;
         }
 
         public async Task<IEnumerable<UsuarioDto>> GetAll()
         {
             return await _context.Users.AsNoTracking()
+                .Select(usuario => new UsuarioDto
+                {
+                    Id = usuario.Id,
+                    NomeDeUtilizador = usuario.NomeDeUtilizador,
+                    Email = usuario.Email,
+                    Telefone = usuario.PhoneNumber,
+                    Perfil = usuario.UserRoles.Select(ur => ur.Role.Name).FirstOrDefault()
+                }).ToListAsync();
+        }
+
+
+        public async Task<IEnumerable<UsuarioDto>> GetAllUsersLessLogged(Guid id)
+        {
+            return await _context.Users.AsNoTracking()
+                .Where(u => u.Id != id)
                 .Select(usuario => new UsuarioDto
                 {
                     Id = usuario.Id,
@@ -132,6 +150,18 @@ namespace SV.Data.Persistence.Repositories.Usuarios
                     return;
                 }
             }
+
+            if(!string.IsNullOrWhiteSpace(usuario.Senha))
+            {
+                var alterarSenhaResultado = await _userManager.ChangePasswordAsync(usuarioAtualizar, usuario.SenhaAntiga, usuario.Senha);
+
+                if (!alterarSenhaResultado.Succeeded)
+                {
+                    NotifyIdentityError(alterarSenhaResultado);
+                    return;
+                }
+            }
+
         }
 
         public async Task Remove(Guid id)
@@ -145,6 +175,32 @@ namespace SV.Data.Persistence.Repositories.Usuarios
                 NotifyIdentityError(resultado);
                 return;
             }
+        }
+
+        public async Task<bool> Login(string email, string senha)
+        {
+            var resultado = await _signInManager.PasswordSignInAsync(email, senha, false, true);
+
+            if (resultado.Succeeded)
+            {
+                return true;
+            }
+
+            if (resultado.IsLockedOut)
+            {
+                _notifier.Handle(new Notification("Usuário temporariamente bloqueado por tentativas inválidas!"));
+                return false;
+            }
+
+            _notifier.Handle(new Notification("Usuário ou Senha incorretos!"));
+            return false;
+        }
+
+
+        public async Task Logout()
+        {
+            await _signInManager.SignOutAsync();
+
         }
 
         private void NotifyIdentityError(IdentityResult result)
@@ -161,5 +217,6 @@ namespace SV.Data.Persistence.Repositories.Usuarios
             _userManager?.Dispose();
             _context?.Dispose();
         }
+
     }
 }

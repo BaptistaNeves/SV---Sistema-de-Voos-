@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using SV.Application.InputModels.Aeroportos;
 using SV.Application.Interfaces.Services.Aeroportos;
 using SV.Application.Interfaces.Services.Cidades;
@@ -11,6 +12,7 @@ using System.Threading.Tasks;
 namespace SV.UI.Admin.Dashboard.Controllers.Aeronaves
 {
     [Area("Dashboard")]
+    [Authorize(Roles = "Operador,Admin")]
     public class AeroportosController : MainController
     {
         private readonly IAeroportoService _aeroportoService;

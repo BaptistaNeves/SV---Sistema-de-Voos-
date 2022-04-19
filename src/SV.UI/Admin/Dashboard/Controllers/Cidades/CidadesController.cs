@@ -5,10 +5,12 @@ using SV.Core.Interfaces.Notifications;
 using SV.UI.Base;
 using System.Threading.Tasks;
 using System;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SV.UI.Admin.Dashboard.Controllers.Cidades
 {
     [Area("Dashboard")]
+    [Authorize(Roles = "Operador,Admin")]
     public class CidadesController : MainController
     {
         private readonly ICidadeService _cidadeService;
