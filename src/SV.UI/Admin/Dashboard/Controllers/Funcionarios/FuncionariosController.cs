@@ -140,7 +140,14 @@ namespace SV.UI.Admin.Dashboard.Controllers.Funcionarios
 
             if (funcionarioModel.ImagemUpload != null)
             {
-                if (!await UploadImage(funcionarioModel.ImagemUpload, imgPrefixo)) return View(funcionarioModel);
+                if (!await UploadImage(funcionarioModel.ImagemUpload, imgPrefixo))
+                {
+                    return View(new FuncionarioViewModel
+                    {
+                        Categorias = await _categoriaService.ObterTodasCategoriasFuncionarios(),
+                        FuncionarioModel = funcionarioModel
+                    });
+                }
 
                 DeleteUploadedImage(imagemAntiga);
             }

@@ -81,7 +81,7 @@ namespace SV.UI.Admin.Dashboard.Controllers.Aeronaves
 
         [HttpGet]
         [Route("admin/excluir-classe/{id:guid}")]
-        public async Task<IActionResult> DeletePost(Guid id)
+        public async Task<IActionResult> Delete(Guid id)
         {
             var classe = await _classeService.ObterClassePorId(id);
 

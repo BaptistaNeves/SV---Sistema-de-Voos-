@@ -25,11 +25,6 @@ namespace SV.Data.Persistence.Mappings.Aeronaves
             builder.Property(a => a.Activo)
                 .HasColumnType("bit");
 
-            builder.HasMany(a => a.Assentos)
-                .WithOne(a => a.Aeronave)
-                .HasForeignKey(a => a.AeronaveId)
-                .OnDelete(DeleteBehavior.Cascade);
-
             builder.ToTable("Aeronaves");
         }
     }

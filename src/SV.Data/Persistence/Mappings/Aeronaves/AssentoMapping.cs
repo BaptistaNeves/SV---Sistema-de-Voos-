@@ -1,11 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using SV.Core.Entities.Aeronaves;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SV.Data.Persistence.Mappings.Aeronaves
 {
@@ -16,10 +11,13 @@ namespace SV.Data.Persistence.Mappings.Aeronaves
             builder.HasKey(a => a.Id);
 
             builder.Property(a => a.Numero)
-                .IsRequired()
-                .HasColumnType("int");
+                .HasColumnType("int")
+                .IsRequired();
 
-            builder.Property(a => a.AeronaveId)
+            builder.Property(a => a.Status)
+               .HasColumnType("bit");
+
+            builder.Property(a => a.VooId)
                 .IsRequired();
 
             builder.Property(a => a.ClasseId)

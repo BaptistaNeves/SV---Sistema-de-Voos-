@@ -18,6 +18,7 @@ namespace SV.Application.InputModels.Funcionarios
         public string Nome { get; set; }
 
         [Required(ErrorMessage = "A Data de Nascimento do funcionário deve ser informada!")]
+        [DataType(DataType.Date)]
         [Display(Name = "Data de Nascimento")]
         public DateTime DataNascimento { get; set; }
 
@@ -55,7 +56,6 @@ namespace SV.Application.InputModels.Funcionarios
 
         public string Imagem { get; set; }
 
-        [Required(ErrorMessage = "Seleccione uma foto para o funcionário!")]
         public IFormFile ImagemUpload { get; set; }
 
         public bool Ativo { get; set; }

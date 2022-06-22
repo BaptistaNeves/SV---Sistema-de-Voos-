@@ -1,0 +1,108 @@
+@import url("fonts.css");
+
+:root {
+    --color-btn: #d2c09e;
+    --color-primary: #27418C;
+    --color-danger: #F05D5E;
+    --color-success: #41f1b6;
+    --color-warning: #ffbb55;
+    --color-white: #fff;
+    --color-info-dark: #7d8da1;
+    --color-info-light: #dce1eb;
+    --color-dark: #363949;
+    --color-light: rgba(132, 139, 200, 0.18);
+    --color-primary-variant: #0A8CBF;
+    --color-dark-variant: #677483;
+    --color-background: #f6f6f9;
+    --color-text: #777;
+    --color-title: #222;
+    --color-bg: #f8f8f8;
+
+    --card-border-radius: 2rem;
+    --border-radius-1: 0.4rem; 
+    --border-radius-2: 0.8rem;
+    --border-radius-3: 1.2rem;
+
+    --card-padding: 1.8rem;
+    --padding-1: 1.2rem;
+
+    --box-shadow: 0 2rem 3rem var(--color-light);
+
+    --hind: "Hind-regular";
+    --hindBold: "Hind-Bold";
+    --Poppins: "Poppins-Regular";
+    --PoppinsBold: "Poppins-Bold";
+}
+.booking-details {
+    padding: 200px 0 100px 0;
+}
+
+.booking-details .card {
+    border: 0;
+    border-radius: 0;
+    background-color: var(--color-white);
+    box-shadow: rgb(0 0 0 / 10%) 0px 4px 16px 0px;
+}
+
+.booking-details .card-title {
+    display: flex;
+    align-items: center;
+   color: var(--color-title);
+   font-weight: 700;
+}
+
+.booking-details .card-icon {
+    display: inline-block;
+    margin-right: 10px;
+    font-size: 18px;
+ }
+
+ .reservation-form .card{
+     border-radius: 0;
+     padding: 0 2px 2px 2px;
+     background-color: var(--color-btn);
+ }
+
+ .reservation-form .card-header{
+     border: 0;
+ }
+
+ .reservation-form .card-title {
+     color: #fff;
+ }
+
+ .reservation-form .card-body{
+     padding: 40px;
+    background-color: #fff;
+    border-radius: 0;
+}
+
+.reservation-form label{
+   margin-bottom: 10px;
+   color: var(--color-title);
+}
+
+.reservation-form .form-select:focus,
+.reservation-form .form-control:focus{
+   box-shadow: none;
+ }
+
+ .reservation-form .form-select,
+ .reservation-form .form-control{
+    color: #a9a9a9;
+    border: 1px solid #dedede;
+    border-radius: 0;
+  }
+
+  .reservation-form .card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #fff;
+      border: 0;
+  }
+
+  .reservation-form .card-price {
+      font-size: 21px;
+      font-family: var(--PoppinsBold);
+  } 

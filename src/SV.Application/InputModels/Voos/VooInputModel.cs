@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace SV.Application.InputModels.Voos
@@ -27,6 +28,20 @@ namespace SV.Application.InputModels.Voos
         [Required(ErrorMessage = "Informe uma Descrição/Nome para este voo!")]
         [MinLength(5, ErrorMessage = "A descrição deve ter no minimo 5 caracteres!")]
         public string Descricao { get; set; }
+
+        [Required(ErrorMessage = "Seleccione o piloto deste voo!")]
+        public string Piloto { get; set; }
+
+        [Required(ErrorMessage = "Seleccione o co-piloto deste voo!")]
+        public string CoPiloto { get; set; }
+
+        [Required(ErrorMessage = "Informe o preço deste voo!")]
+        [Range(1, int.MaxValue, ErrorMessage = "O valor do preço deve ser maior que zero!")]
+        public double PrecoCusto { get; set; }
+
+        public string Imagem { get; set; }
+
+        public IFormFile ImagemUpload { get; set; }
 
         [Required(ErrorMessage = "Informe a data de partida deste voo!")]
         [DataType(DataType.Date)]

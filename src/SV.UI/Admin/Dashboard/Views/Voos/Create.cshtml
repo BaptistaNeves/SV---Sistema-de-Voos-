@@ -26,7 +26,7 @@
             <div class="col-12">
 
                 <div class="card">
-                    <form asp-action="Create">
+                    <form asp-action="Create" enctype="multipart/form-data">
                         @await Component.InvokeAsync(typeof(SV.UI.Admin.Dashboard.Extensions.SummaryViewComponent))
 
                         <partial name="_UpSert" model="Model" />

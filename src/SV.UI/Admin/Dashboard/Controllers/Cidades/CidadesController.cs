@@ -69,9 +69,9 @@ namespace SV.UI.Admin.Dashboard.Controllers.Cidades
         }
 
 
-        [HttpPut]
-        [Route("admin/editar-cidade")]
-        public async Task<IActionResult> EditPost(CidadeInputModel cidadeModel)
+        [HttpPost]
+        [Route("admin/editar-cidade/{id:guid}")]
+        public async Task<IActionResult> Edit(CidadeInputModel cidadeModel)
         {
             if (!ModelState.IsValid) return View(cidadeModel);
 
@@ -86,7 +86,7 @@ namespace SV.UI.Admin.Dashboard.Controllers.Cidades
 
         [HttpGet]
         [Route("admin/excluir-cidade/{id:guid}")]
-        public async Task<IActionResult> DeletePost(Guid id)
+        public async Task<IActionResult> Delete(Guid id)
         {
             var cidade = await _cidadeService.ObterCidadePorId(id);
 

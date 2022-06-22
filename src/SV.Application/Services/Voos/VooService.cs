@@ -30,7 +30,10 @@ namespace SV.Application.Services.Voos
         {
             return await _vooRepository.GetAllAsync();
         }
-
+        public async Task<IEnumerable<VooDto>> ObterVoosParaVitrine()
+        {
+            return await _vooRepository.ObterVoos();
+        }
         public async Task<IEnumerable<VooDto>> ObterVoosFiltrados()
         {
             return await _vooRepository.ObterVoosFiltrados();
@@ -38,7 +41,13 @@ namespace SV.Application.Services.Voos
 
         public async Task<VooInputModel> ObterVooPorId(Guid id)
         {
-            return _mapper.Map<VooInputModel>(await _vooRepository.FindAsync(id));
+            return _mapper.Map<VooInputModel>(await _vooRepository
+                .FirstOrDefaultAsync(f => f.Id == id, isTracking: false));
+        }
+
+        public async Task<VooDto> ObterVooFiltradoPorId(Guid id)
+        {
+            return await _vooRepository.ObterVooFiltradoPorId(id);
         }
 
         public async Task Inserir(VooInputModel vooModel)

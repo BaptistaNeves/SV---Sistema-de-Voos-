@@ -64,9 +64,9 @@ namespace SV.UI.Admin.Dashboard.Controllers.Funcionarios
         }
 
 
-        [HttpPost, ActionName("Edit")]
+        [HttpPost]
         [Route("admin/editar-categoria-funcionario/{id:guid}")]
-        public async Task<IActionResult> EditPost(Guid id, CategoriaFuncionarioInputModel categoriaModel)
+        public async Task<IActionResult> Edit(Guid id, CategoriaFuncionarioInputModel categoriaModel)
         {
             if (!ModelState.IsValid) return View(categoriaModel);
 
@@ -92,7 +92,7 @@ namespace SV.UI.Admin.Dashboard.Controllers.Funcionarios
 
             await _categoriaFuncionarioService.Remover(id);
 
-            if (!OperacaoIsValide()) return View();
+            if (!OperacaoIsValide()) return RedirectToAction(nameof(Index));
 
             TempData["success"] = "Categoria excluida com sucesso!";
 

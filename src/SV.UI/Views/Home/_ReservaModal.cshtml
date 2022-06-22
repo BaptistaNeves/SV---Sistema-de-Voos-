@@ -1,0 +1,59 @@
+﻿@model SV.Core.DTOs.Voos.VooDto
+
+ <div class="modal-header m-0">
+    <h5 class="modal-title">Luanda - Lisboa</h5>
+    <button type="button" class="btn-close" data-dismiss="modal"></button>
+</div>
+
+
+    <form asp-controller="Reservas" asp-action="Index">
+         <input asp-for="@Model.Id" type="hidden" class="form-control">
+        <div class="modal-body">
+        <div class="row">
+                <div class="col-12 col-md-6">
+                    <label asp-for="@Model.AeroportoDeOrigem">Origem:</label>
+                    <input asp-for="@Model.AeroportoDeOrigem" type="text" class="form-control" placeholder="">
+                </div>
+                <div class="col-12 col-md-6">
+                <label asp-for="@Model.AeroportoDestino">Destino:</label>
+                <input asp-for="@Model.AeroportoDestino" type="text" class="form-control" placeholder="">
+            </div>
+        </div>
+        <div class="row my-3">
+            <div class="col-12 col-md-6">
+                <label asp-for="@Model.DataIda">Data de ida:</label>
+                <input asp-for="@Model.DataIda" type="text" class="form-control" placeholder="">
+            </div>
+            <div class="col-12 col-md-6">
+                <label asp-for="@Model.DataRegresso">Data de volta:</label>
+                <input asp-for="@Model.DataRegresso" type="text" class="form-control" placeholder="">
+            </div>
+        </div>
+       @* <div class="row">
+        <div class="col-12 col-md-6">
+            <label>Classe:</label>
+            <select class="form-select">
+                <option selected disabled>--Seleciona a classe--</option>
+            </select>
+        </div>
+        <div class="col-12 col-md-3">
+            <label>Ecónomica:</label>
+            <select class="form-select">
+                <option selected disabled>--Assento--</option>
+            </select>
+        </div>
+        <div class="col-12 col-md-3">
+            <label>Executiva:</label>
+            <select class="form-select">
+                <option selected disabled>--Assento--</option>
+            </select>
+        </div>
+        </div>*@
+        
+</div>
+        <div class="modal-footer mt-3 mb-0 border-0 p-0">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+            <!-- <button type="submit" class="btn btn-default shadow">Reservar agora</button> -->
+            <a Asp-controller="Reservas" asp-action="Index" asp-route-id="@Model.Id" class="btn btn-default shadow">Reservar agora</a>
+        </div>
+    </form>

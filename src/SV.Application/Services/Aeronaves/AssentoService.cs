@@ -36,7 +36,22 @@ namespace SV.Application.Services.Aeronaves
 
         public async Task<IEnumerable<Assento>> ObterTodosAssentos()
         {
-            return await _assentoRepository.GetAllAsync(inCludeProperties: "Aeronave,Classe");
+            return await _assentoRepository.GetAllAsync(inCludeProperties: "Classe");
+        }
+
+        public async Task<IEnumerable<Assento>> ObterAssentosExecutivosPorVooId(Guid id)
+        {
+            return await _assentoRepository.ObterAssentosExecutivosPorVooId(id);
+        }
+
+        public async Task<IEnumerable<Assento>> ObterAssentosEconomicosPorVooId(Guid id)
+        {
+            return await _assentoRepository.ObterAssentosEconomicosPorVooId(id);
+        }
+
+        public async Task<IEnumerable<Assento>> ObterAssentosPorVooId(Guid id)
+        {
+            return await _assentoRepository.GetAllAsync(a => a.VooId == id, inCludeProperties: "Classe");
         }
 
         public async Task Inserir(AssentoInputModel inputModel)

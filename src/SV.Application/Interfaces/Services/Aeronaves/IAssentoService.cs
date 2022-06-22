@@ -12,6 +12,9 @@ namespace SV.Application.Interfaces.Services.Aeronaves
         Task Atualizar(AssentoInputModel inputModel);
         Task<AssentoInputModel> ObterAssetoPorId(Guid id);
         Task<IEnumerable<Assento>> ObterTodosAssentos();
+        Task<IEnumerable<Assento>> ObterAssentosPorVooId(Guid id);
+        Task<IEnumerable<Assento>> ObterAssentosExecutivosPorVooId(Guid id);
+        Task<IEnumerable<Assento>> ObterAssentosEconomicosPorVooId(Guid id);
         Task Remover(Guid id);
     }
 }

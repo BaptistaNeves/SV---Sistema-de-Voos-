@@ -3,6 +3,7 @@ using SV.Application.InputModels.Funcionarios;
 using SV.Application.Interfaces.Services.Funcionarios;
 using SV.Application.Services.Base;
 using SV.Application.Validations.Funcionarios;
+using SV.Core.DTOs.Funcionarios;
 using SV.Core.Entities.Funcionarios;
 using SV.Core.Interfaces.Notifications;
 using SV.Core.Interfaces.Repositories.Funcionarios;
@@ -34,6 +35,16 @@ namespace SV.Application.Services.Funcionarios
         {
             return _mapper.Map<IEnumerable<Funcionario>>
                  (await _funcionarioRepository.GetAllAsync(inCludeProperties: "CategoriaFuncionario"));
+        }
+
+        public async Task<IEnumerable<FuncionarioPilotoECopilotoDto>> ObterFuncionariosPiloto()
+        {
+            return await _funcionarioRepository.ObterFuncionariosPiloto();
+        }
+
+        public async Task<IEnumerable<FuncionarioPilotoECopilotoDto>> ObterFuncionariosCoPiloto()
+        {
+            return await _funcionarioRepository.ObterFuncionariosCoPiloto();
         }
 
         public async Task Inserir(FuncionarioInputModel funcionarioModel)
@@ -82,5 +93,6 @@ namespace SV.Application.Services.Funcionarios
         {
             _funcionarioRepository?.Dispose();
         }
+
     }
 }

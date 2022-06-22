@@ -10,7 +10,9 @@ namespace SV.Application.Interfaces.Services.Voos
     public interface IVooService : IDisposable
     {
         Task<VooInputModel> ObterVooPorId(Guid id);
+        Task<VooDto> ObterVooFiltradoPorId(Guid id);
         Task<IEnumerable<Voo>> ObterTodosVoos();
+        Task<IEnumerable<VooDto>> ObterVoosParaVitrine();
         Task<IEnumerable<VooDto>> ObterVoosFiltrados();
         Task Inserir(VooInputModel cidadeModel);
         Task Atualizar(VooInputModel cidadeModel);

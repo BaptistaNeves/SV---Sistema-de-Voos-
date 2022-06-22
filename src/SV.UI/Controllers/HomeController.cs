@@ -1,37 +1,37 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using SV.UI.Models;
+using SV.Application.Interfaces.Services.Aeronaves;
+using SV.Application.Interfaces.Services.Voos;
+using SV.Core.Interfaces.Notifications;
+using SV.UI.Base;
 using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace SV.UI.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : MainController
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly IVooService _vooService;
+        private readonly IClasseService _classeService;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(INotifier notifier, IVooService vooService, 
+                              IClasseService classeService) : base(notifier)
         {
-            _logger = logger;
+            _vooService = vooService;
+            _classeService = classeService;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            return View(await _vooService.ObterVoosParaVitrine());
         }
 
-        public IActionResult Privacy()
+        [HttpGet]
+        [Route("fazer-reserva/{id:guid}")]
+        public async Task<IActionResult> ReservaModal(Guid id)
         {
-            return View();
-        }
+            var voo = await _vooService.ObterVooFiltradoPorId(id);
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            return PartialView("_ReservaModal", voo);
         }
     }
 }

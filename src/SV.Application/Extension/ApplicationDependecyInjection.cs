@@ -4,12 +4,14 @@ using SV.Application.Interfaces.Services.Aeronaves;
 using SV.Application.Interfaces.Services.Aeroportos;
 using SV.Application.Interfaces.Services.Cidades;
 using SV.Application.Interfaces.Services.Funcionarios;
+using SV.Application.Interfaces.Services.Reservas;
 using SV.Application.Interfaces.Services.Usuarios;
 using SV.Application.Interfaces.Services.Voos;
 using SV.Application.Services.Aeronaves;
 using SV.Application.Services.Aeroportos;
 using SV.Application.Services.Cidades;
 using SV.Application.Services.Funcionarios;
+using SV.Application.Services.Reservas;
 using SV.Application.Services.Usuarios;
 using SV.Application.Services.Voos;
 
@@ -33,6 +35,8 @@ namespace SV.Application.Extension
 
             services.AddScoped<ITipoDeVooService,TipoDeVooService>();
             services.AddScoped<IVooService, VooService>();
+
+            services.AddScoped<IReservaService, ReservaService>();
 
             services.AddAutoMapper(typeof(InputModelsToEntities));
             services.AddAutoMapper(typeof(EntitiesToViewModels));

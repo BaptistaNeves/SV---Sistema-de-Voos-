@@ -8,7 +8,7 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0">Novo Assento</h1>
+                <h1 class="m-0">Novo úsuario</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
@@ -27,7 +27,7 @@
 
                 <div class="card">
                     <form asp-action="Create">
-                        <@await Component.InvokeAsync(typeof(SV.UI.Admin.Dashboard.Extensions.SummaryViewComponent))
+                        @await Component.InvokeAsync(typeof(SV.UI.Admin.Dashboard.Extensions.SummaryViewComponent))
 
                         <partial name="_UpSert" model="Model" />
 

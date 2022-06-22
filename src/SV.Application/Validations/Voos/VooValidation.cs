@@ -11,6 +11,16 @@ namespace SV.Application.Validations.Voos
                 .NotEmpty().WithMessage("Informe uma Descrição/Nome para este voo!")
                 .MinimumLength(5).WithMessage("A descrição deve ter no minimo 5 caracteres!");
 
+            RuleFor(v => v.Imagem)
+                .NotEmpty().WithMessage("Seleccione uma imagem para o voo!");
+
+            RuleFor(v => v.Piloto)
+                .NotEmpty().WithMessage("Seleccione o piloto deste voo!");
+
+            RuleFor(v => v.CoPiloto)
+                .NotEmpty().WithMessage("Seleccione o co-piloto deste voo!");
+
+
             RuleFor(v => v.TipoDeVooId)
                 .NotEmpty().WithMessage("Seleccione o tipo de voo!");
 

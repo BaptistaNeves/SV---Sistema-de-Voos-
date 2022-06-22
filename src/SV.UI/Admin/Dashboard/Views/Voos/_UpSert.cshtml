@@ -9,9 +9,27 @@
         </div>
     </div>
     <div class="form-group row">
+        <label asp-for="@Model.VooInputModel.Piloto" class="col-sm-4 col-form-label text-left">Piloto:</label>
+        <div class="col-sm-6 row justify-content-start">
+            <select class="form-control" asp-for="@Model.VooInputModel.Piloto" asp-items="@(new SelectList(Model.Pilotos, "Nome", "Nome"))">
+                <option disabled selected>--Selecione o piloto--</option>
+            </select>
+            <span class="text-danger" asp-validation-for="@Model.VooInputModel.Piloto"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label asp-for="@Model.VooInputModel.CoPiloto" class="col-sm-4 col-form-label text-left">Co-piloto:</label>
+        <div class="col-sm-6 row justify-content-start">
+            <select class="form-control" asp-for="@Model.VooInputModel.CoPiloto" asp-items="@(new SelectList(Model.CoPilotos, "Nome", "Nome"))">
+                <option disabled selected>--Selecione o co-piloto --</option>
+            </select>
+            <span class="text-danger" asp-validation-for="@Model.VooInputModel.CoPiloto"></span>
+        </div>
+    </div>
+    <div class="form-group row">
         <label asp-for="@Model.VooInputModel.AeroportoDeOrigem" class="col-sm-4 col-form-label text-left">Aeroporto de origem:</label>
         <div class="col-sm-6 row justify-content-start">
-            <select class="form-control" asp-for="@Model.VooInputModel.AeroportoDeOrigem" asp-items="@(new SelectList(Model.Aeroportos, "Id", "Nome"))">
+            <select class="form-control" asp-for="@Model.VooInputModel.AeroportoDeOrigem" asp-items="@(new SelectList(Model.Aeroportos, "Nome", "Nome"))">
                 <option disabled selected>--Selecione o aeroporto de origem--</option>
             </select>
             <span class="text-danger" asp-validation-for="@Model.VooInputModel.AeroportoDeOrigem"></span>
@@ -20,7 +38,7 @@
     <div class="form-group row">
         <label asp-for="@Model.VooInputModel.AeroportoDestino" class="col-sm-4 col-form-label text-left">Aeroporto destino:</label>
         <div class="col-sm-6 row justify-content-start">
-            <select class="form-control" asp-for="@Model.VooInputModel.AeroportoDestino" asp-items="@(new SelectList(Model.Aeroportos, "Id", "Nome"))">
+            <select class="form-control" asp-for="@Model.VooInputModel.AeroportoDestino" asp-items="@(new SelectList(Model.Aeroportos, "Nome", "Nome"))">
                 <option disabled selected>--Selecione o aeroporto de destino--</option>
             </select>
             <span class="text-danger" asp-validation-for="@Model.VooInputModel.AeroportoDestino"></span>
@@ -69,7 +87,19 @@
         </div>
     </div>
     <div class="form-group row">
-        <label asp-for="@Model.VooInputModel.PrevisaoDeChegada" class="col-sm-4 col-form-label text-left">Previsão de chegada:</label>
+        <label asp-for="@Model.VooInputModel.PrevisaoDeChegadaAoDestino" class="col-sm-4 col-form-label text-left">Previsão de chegada ao destino:</label>
+        <div class="col-sm-6 row justify-content-start">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                </div>
+                <input asp-for="@Model.VooInputModel.PrevisaoDeChegadaAoDestino" class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask>
+            </div>
+            <span class="text-danger" asp-validation-for="@Model.VooInputModel.PrevisaoDeChegadaAoDestino"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label asp-for="@Model.VooInputModel.PrevisaoDeChegada" class="col-sm-4 col-form-label text-left">Previsão de regresso:</label>
         <div class="col-sm-6 row justify-content-start">
             <div class="input-group">
                 <div class="input-group-prepend">
@@ -80,16 +110,29 @@
             <span class="text-danger" asp-validation-for="@Model.VooInputModel.PrevisaoDeChegada"></span>
         </div>
     </div>
-     <div class="form-group row">
-        <label asp-for="@Model.VooInputModel.PrevisaoDeChegadaAoDestino" class="col-sm-4 col-form-label text-left">Previsão de chegada ao destino:</label>
+
+    <div class="form-group row">
+        <label asp-for="@Model.VooInputModel.PrecoCusto" class="col-sm-4 col-form-label text-left">Custo do voo:</label>
+          
         <div class="col-sm-6 row justify-content-start">
-            <div class="input-group">
-                <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
-                </div>
-                <input asp-for="@Model.VooInputModel.PrevisaoDeChegadaAoDestino" class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask>
-            </div>
-            <span class="text-danger" asp-validation-for="@Model.VooInputModel.PrevisaoDeChegadaAoDestino"></span>
+            <input type="text" asp-for="@Model.VooInputModel.PrecoCusto" class="form-control">
+            <span class="text-danger" asp-validation-for="@Model.VooInputModel.PrecoCusto"></span>
+        </div>
+    </div>
+
+    <div class="col-sm-10 col-md-6 col-lg-6 form-group">
+        <label asp-for="@Model.VooInputModel.ImagemUpload" class="col-form-label text-right">Imagem:</label>
+          
+        <div class="">
+            <input type="file" asp-for="@Model.VooInputModel.ImagemUpload" class="form-control-file">
+            <span class="text-danger" asp-validation-for="@Model.VooInputModel.ImagemUpload"></span>
+        </div>
+    </div>
+
+    <div class="class="col-sm-10 col-md-6 col-lg-6 form-group">
+        <div class="custom-control custom-checkbox">
+            <input asp-for="@Model.VooInputModel.Estado" class="custom-control-input" type="checkbox" checked>
+            <label asp-for="@Model.VooInputModel.Estado" class="custom-control-label">Voo liberado?</label>
         </div>
     </div>
 </div>

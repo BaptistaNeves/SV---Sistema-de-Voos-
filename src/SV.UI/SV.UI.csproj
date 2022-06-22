@@ -29,6 +29,7 @@
   <ItemGroup>
     <Folder Include="wwwroot\adminLte\" />
     <Folder Include="wwwroot\UploadedImages\Admin\" />
+    <Folder Include="wwwroot\UploadedImages\Site\Voos\" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,8 +1,246 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model IEnumerable<SV.Core.DTOs.Voos.VooDto>
+
+@{
+    ViewData["Title"] = "Home";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+
+<section class="apresentation">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-12 col-md-6 col-lg-6">
+                <div class="apresentation-text">
+                    <h5>Não é só um voo, é uma bela experiência de vida</h5>
+                    <h1>Uma Base Perfeita Para Você!</h1>
+                    <div class="apresentation-btns">
+                        <a href="#planes" class="btn btn-default shadow">Planos de Voos</a>
+                        <a href="#about-us" class="btn btn-default-outline ms-3 shadow">Saiba mais</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-6">
+                <div class="box-img">
+                    <img src="img/main-header-bg.jpg" alt="Imagem de voo">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="call-toAction">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-md-5 col-lg-5 px-5">
+                <div class="call-toAction__title">
+                    <h5>O que oferecemos</h5>
+                    <h2>Uma Viajem de Luxo ao Menor Custo</h2>
+                    <p>A OnArilines tem tudo para lhe oferecer uma viajem de luxo com bastante beneficios e a um custo jamais visto no mercado.</p>
+                    <a href="#" class="btn btn-default shadow">Fazer Reserva</a>
+                </div>
+            </div>
+            <div class="col-12 col-md-7 col-lg-7">
+                <div class="call-toAction__items">
+                    <div class="row">
+                        <div class="col-12 col-md-12 col-lg-12 call-toAction__item row">
+                            <div class="col-12 col-md-2 col-lg-2">
+                                <div class="call-toAction__item--icon"></div>
+                            </div>
+                            <div class="col-12 col-md-10 col-lg-10 ps-4">
+                                <div>
+                                    <h4>Confortável & Tranquila</h4>
+                                    <p>Asseguramos para você, uma viajem traquila e no melhor conforto, oferemos comodos e assentos de qualidade para que relaxe e curta sua viajem.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-12 col-lg-12 call-toAction__item row">
+                            <div class="col-12 col-md-2 col-lg-2">
+                                <div class="call-toAction__item--icon-2"></div>
+                            </div>
+                            <div class="col-12 col-md-10 col-lg-10 ps-4">
+                                <div>
+                                    <h4>Saúdavel & Deliciosa</h4>
+                                    <p>Trazemos um cardápio diversificado e delicioso para todo tipo de voo, totalmente saúdaveis, pois a nossa maior preocupação é o seu bem-estar.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-12 col-lg-12 call-toAction__item row">
+                            <div class="col-12 col-md-2 col-lg-2">
+                                <div class="call-toAction__item--icon"></div>
+                            </div>
+                            <div class="col-12 col-md-10 col-lg-10 ps-4">
+                                <div>
+                                    <h4>Segurança & Profissionalismo</h4>
+                                    <p>Contamos com uma equipa de profissionais altamente qualificados e especializados nas diversas áreas da viação aerea e não só. A segurança na OnAirlines é tradada com rigor e responsabilidade.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="about" id="about-us">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-12 col-md-6 col-lg-6 px-5">
+                <div class="box-img">
+                    <img src="img/img-about.jpg" alt="Sobre Nós">
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-6">
+                <div class="about-text">
+                    <h5>Sobre Nós</h5>
+                    <h2>Ligamos o Mundo & Estreitamos as Distâncias</h2>
+                    <p>
+                        OnAirlines é uma das maiores companhias áreas de Angola, que funciona no mercado há mais de 10 anos, oferecendo aos seus clientes e parceiros uma experiência de viajem sem igual, com um atendimento personalizado e de qualidade.
+                    </p>
+                    <p>
+                        O segredo do nosso sucesso é revelado no conforto, na confiança, na segurança, e claro, nos preços mais acessíveis do mercado que oferecemos em todos nossos serviços. Possuimos uma equipa de profissionais especializados nas mais diversas áreas da viação aerea.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="booking" id="planes">
+    <div class="container">
+        <div class="booking-title">
+            <h2>Confira os Nossos Planos de Voos</h2>
+        </div>
+        <div>
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="all-tab"  href="#all" data-toggle="tab">Todos</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="international-tab" href="#international" data-toggle="tab">Internacional</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="domestic-tab" href="#domestic" data-toggle="tab">Domésticos</button>
+                </li>
+                </ul>
+                <div class="tab-content my-5" id="myTabContent">
+                <div class="tab-pane fade show active" id="all">
+                    <div class="row">
+                         @foreach (var voo in Model) {
+                            <div class="col-12 col-md-4 col-lg-4">
+                                <a href="#">
+                                    <div class="card p-0 border-0">
+                                        <img src="UploadedImages/Site/Voos/@voo.Imagem" alt="Rio de Janeiro" class="card-img w-100">
+                                        <div class="card-body text-center py-4 px-4">
+                                            <h5 class="card-title">@voo.Descricao</h5>
+                                            <p class="card-text">@voo.PrecoCusto AKZ</p>
+                                            <a asp-action="ReservaModal" asp-route-id="@voo.Id" class="card-link mt-4 d-block" data-modal="">Fazer Reserva</a>                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        }
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="international">
+                    <div class="row">
+                        @foreach (var voo in Model) {
+                            @if(voo.TipoDeVoo == "Internacional")
+                            {
+                            <div class="col-12 col-md-4 col-lg-4">
+                                <a href="#">
+                                    <div class="card p-0 border-0">
+                                        <img src="UploadedImages/Site/Voos/@voo.Imagem" alt="Rio de Janeiro" class="card-img w-100">
+                                        <div class="card-body text-center py-4 px-4">
+                                            <h5 class="card-title">@voo.Descricao</h5>
+                                            <p class="card-text">@voo.PrecoCusto AKZ</p>
+                                            <a asp-action="ReservaModal" asp-route-id="@voo.Id" class="card-link mt-4 d-block" data-modal="">Fazer Reserva</a>                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            }
+                        }
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="domestic" role="tabpanel" aria-labelledby="domestic-tab">
+                    <div class="row">
+                         @foreach (var voo in Model) {
+                            @if(voo.TipoDeVoo == "Doméstico" || voo.TipoDeVoo == "Domestico")
+                            {
+                            <div class="col-12 col-md-4 col-lg-4">
+                                <a href="#">
+                                    <div class="card p-0 border-0">
+                                        <img src="UploadedImages/Site/Voos/@voo.Imagem" alt="Rio de Janeiro" class="card-img w-100">
+                                        <div class="card-body text-center py-4 px-4">
+                                            <h5 class="card-title">@voo.Descricao</h5>
+                                            <p class="card-text">@voo.PrecoCusto AKZ</p>
+                                            <a asp-action="ReservaModal" asp-route-id="@voo.Id" class="card-link mt-4 d-block" data-modal="">Fazer Reserva</a>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            }
+                        }
+                    </div>
+                </div>
+                </div>
+        </div>
+    </div>
+</section>
+
+<div id="myModal" class="modal fade">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div id="myModalContent"></div>
+        </div>
+    </div>
 </div>
+
+@section scripts
+{
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script>
+        $(document).ready(function () {
+            AjaxModal();
+        });
+
+        function AjaxModal() {
+
+    $(document).ready(function () {
+        $(function () {
+            $.ajaxSetup({ cache: false });
+
+            $("a[data-modal]").on("click",
+                function (e) {
+                    $('#myModalContent').load(this.href,
+                        function () {
+                            $('#myModal').modal({
+                                keyboard: true
+                            },
+                                'show');
+                            //bindForm(this);
+                        });
+                    return false;
+                });
+        });
+
+        function bindForm(dialog) {
+            $('form', dialog).submit(function () {
+                $.ajax({
+                    url: this.action,
+                    type: this.method,
+                    data: $(this).serialize(),
+                    success: function (result) {
+                        if (result.success) {
+                            $('#myModal').modal('hide');
+                            $('#AssentoTarget').load(result.url); // Carrega o resultado HTML para a div demarcada
+                        } else {
+                            $('#myModalContent').html(result);
+                            bindForm(dialog);
+                        }
+                    }
+                });
+                return false;
+            });
+        }
+    });
+}
+    </script>
+}

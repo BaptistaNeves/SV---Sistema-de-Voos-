@@ -1,0 +1,18 @@
+﻿@model SV.UI.Admin.Dashboard.ViewModels.Aeronaves.AssentoViewModel
+
+<div class="form-group row">
+    <label asp-for="@Model.AssentoInputModel.Numero" class="col-sm-2 col-form-label text-right">Nº do Assento:</label>
+    <div class="col-sm-6">
+        <input asp-for="@Model.AssentoInputModel.Numero" class="form-control" placeholder="....">
+        <span class="text-danger" asp-validation-for="@Model.AssentoInputModel.Numero"></span>
+    </div>
+</div>
+<div class="form-group row">
+    <label asp-for="@Model.AssentoInputModel.ClasseId" class="col-sm-2 col-form-label text-right">Classe:</label>
+    <div class="col-sm-6">
+        <select class="form-control" asp-for="@Model.AssentoInputModel.ClasseId" asp-items="@(new SelectList(Model.Classes, "Id", "Descricao"))">
+            <option disabled selected>--Selecione uma Classe--</option>
+        </select>
+        <span class="text-danger" asp-validation-for="@Model.AssentoInputModel.ClasseId"></span>
+    </div>
+</div>

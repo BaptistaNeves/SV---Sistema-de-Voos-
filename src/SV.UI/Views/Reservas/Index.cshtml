@@ -1,0 +1,177 @@
+﻿@model SV.UI.ViewModels.ReservaViewModel
+
+@{
+    ViewData["Title"] = "Reserva " + @Model.Voo.Descricao;
+}
+
+<section class="booking-details">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-md-5 col-lg-5">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title"><i class="fa fa-plane card-icon"></i> @Model.Voo.Descricao</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <p class="card-text"><strong>Data de ida:</strong> @Model.Voo.DataIda</p>
+                                <p class="card-text"><strong>Data de volta:</strong> @Model.Voo.DataRegresso</p>
+                                <p class="card-text"><strong>Hora de partida:</strong> @Model.Voo.HoraDePartida.TimeOfDay</p>
+                                <p class="card-text"><strong>Custo da viagem:</strong> @Model.Voo.PrecoCusto AKZ</p>
+                                <p class="card-text"><strong>Origem:</strong> @Model.Voo.AeroportoDeOrigem</p>
+                                <p class="card-text"><strong>Destino:</strong> @Model.Voo.AeroportoDestino</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-7 col-lg-7 reservation-form">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title">Dados do passageiro</h5>
+                    </div>
+                    @if(!Model.Economica.Any() && !Model.Executiva.Any()){
+                        <div class="card-body">
+                            <div class="alert-warning text-center">
+                                <p>Este voo já não possui assentos livres!</p>
+                            </div>
+                        </div>
+                    }else{
+                    
+                    <div class="card-body">
+                        <form asp-action="Index" asp-route-id="@Model.Voo.Id">
+                           @await Component.InvokeAsync(typeof(SV.UI.Extensions.SummaryViewComponent))
+                           
+                            <div class="row my-4">
+                                <div class="col-12 col-md-6">
+                                    <label>Assentos clas. executiva:</label>
+                                    <select class="form-control"id="classeExecutiva"  asp-for="@Model.ReservaInputModel.AssentoId" asp-items="@(new SelectList(Model.Executiva, "Id", "Numero"))">
+                                        <option disabled selected>--Selecione o assento--</option>
+                                    </select>
+                                    <span class="text-danger" asp-validation-for="@Model.ReservaInputModel.AssentoId"></span>
+                                </div>
+                               <div class="col-12 col-md-6">
+                                    <label>Assentos clas. economica:</label>
+                                   <select class="form-control" id="classeEconomica" asp-for="@Model.ReservaInputModel.AssentoId" asp-items="@(new SelectList(Model.Economica, "Id", "Numero"))">
+                                        <option disabled selected>--Selecione o assento--</option>
+                                    </select>
+                                    <span class="text-danger" asp-validation-for="@Model.ReservaInputModel.AssentoId"></span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 col-md-6">
+                                    <label>Nome completo:</label>
+                                    <input type="text" asp-for="@Model.ReservaInputModel.Nome" class="form-control">
+                                    <span class="text-danger" asp-validation-for="@Model.ReservaInputModel.Nome"></span>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <label>Data de nascimento:</label>
+                                    <input type="date" asp-for="@Model.ReservaInputModel.DataNascimento" class="form-control">
+                                     <span class="text-danger" asp-validation-for="@Model.ReservaInputModel.DataNascimento"></span>
+                                </div>
+                            </div>
+                            <div class="row my-4">
+                                <div class="col-12 col-md-6">
+                                    <label>Tipo de documento:</label>
+                                    <select class="form-select" asp-for="@Model.ReservaInputModel.TipoDocumento">
+                                        <option selected disabled>--Selecione o doc--</option>
+                                        <option value="Passaporte">Passaporte</option>
+                                        <option value="Bilhete de Identidade">Bilhete de Identidade</option>
+                                    </select>
+                                    <span class="text-danger" asp-validation-for="@Model.ReservaInputModel.TipoDocumento"></span>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <label>Nº documento:</label>
+                                    <input type="text" asp-for="@Model.ReservaInputModel.NumeroDocumento" class="form-control">
+                                    <span class="text-danger" asp-validation-for="@Model.ReservaInputModel.NumeroDocumento"></span>
+                                </div>
+                            </div>
+                            <div class="row mb-4">
+                                <div class="col-12 col-md-6">
+                                    <label>Telefone:</label>
+                                    <input type="text" asp-for="@Model.ReservaInputModel.Telefone" class="form-control">
+                                    <span class="text-danger" asp-validation-for="@Model.ReservaInputModel.Telefone"></span>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <label>E-mail:</label>
+                                    <input type="email" asp-for="@Model.ReservaInputModel.Email" class="form-control">
+                                    <span class="text-danger" asp-validation-for="@Model.ReservaInputModel.Email"></span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 col-md-6">
+                                    <label>Sexo:</label>
+                                    <select class="form-select" asp-for="@Model.ReservaInputModel.Sexo">
+                                        <option selected disabled>--Selecione--</option>
+                                        <option value="Masculino">Masculino</option>
+                                        <option value="Femenino">Femenino</option>
+                                        <option value="Outro">Outro</option>
+                                    </select>
+                                    <span class="text-danger" asp-validation-for="@Model.ReservaInputModel.Sexo"></span>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <label>Endereço:</label>
+                                    <textarea cols="5" rows="2" asp-for="@Model.ReservaInputModel.Endereco" class="form-control"></textarea>
+                                    <span class="text-danger" asp-validation-for="@Model.ReservaInputModel.Endereco"></span>
+                                </div>
+                            </div>
+                            <div class="card-footer mt-4">
+                                <p class="card-price mb-2">500.000,00 AKZ</p>
+                                <button type="submit" class="btn btn-default shadow">Concluir</button>
+                            </div>
+                        </form>
+                    </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section scripts
+{
+
+    <script type="text/javascript">
+
+        //function verificarEstadoDosCamposSenha()
+        //{
+        //     var ckAlterarSenha = document.getElementById('ckAlterarSenha');
+
+        //    if(ckAlterarSenha.checked) {
+        //            senhaInput.disabled = '';
+        //            confirmarSenhaInput.disabled = '';
+        //            senhaAntigaInput.disabled = '' ;
+        //        } else {
+        //            senhaInput.disabled = 'false';
+        //            confirmarSenhaInput.disabled = 'false';
+        //            senhaAntigaInput.disabled = 'false';
+        //        }
+        //}
+
+        (function() {
+            var classeExecutiva = document.getElementById('classeExecutiva');
+            var classeEconomica = document.getElementById('classeEconomica');
+            
+            //verificarEstadoDosCamposSenha();
+
+            classeExecutiva.addEventListener('change', function(){
+               classeEconomica.disabled = 'false';
+            });
+
+             classeEconomica.addEventListener('change', function(){
+               classeExecutiva.disabled = 'false';
+            });
+        })(); 
+    </script>
+
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    
+}

@@ -140,12 +140,6 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a asp-area="Dashboard" asp-controller="Assentos" asp-action="Index" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Assentos</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
                                     <a asp-area="Dashboard" asp-controller="Aeronaves" asp-action="Index" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Aeronaves</p>
@@ -180,7 +174,7 @@
                             <a href ="#" class="nav-link">
                                 <i class="nav-icon fas fa-users"></i>
                                 <p>
-                                    Funcionarios
+                                    Funcionários
                                     <i class="fas fa-angle-left right"></i>
                                 </p>
                             </a>
@@ -188,29 +182,29 @@
                                 <li class="nav-item">
                                     <a asp-area="Dashboard" asp-controller="CategoriasFuncionario" asp-action="Index" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>Categorias</p>
+                                        <p>Funções</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a asp-area="Dashboard" asp-controller="Funcionarios" asp-action="Index" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>Funcionarios</p>
+                                        <p>Funcionários</p>
                                     </a>
                                 </li>
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link">
+                            <a asp-area="Dashboard" asp-controller="ReservaAdmin" asp-action="Index"  class="nav-link">
                                 <i class="nav-icon fas fa-shopping-cart"></i>
                                 <p>Reservas</p>
                             </a>
                         </li>
-                        <li class="nav-item">
+                        @*<li class="nav-item">
                             <a class="nav-link">
                                 <i class="nav-icon fas fa-person-booth"></i>
                                 <p>Clientes</p>
                             </a>
-                        </li>
+                        </li>*@
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->

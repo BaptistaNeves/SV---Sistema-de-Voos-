@@ -136,7 +136,7 @@ namespace SV.Data.Persistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("AeronaveId")
+                    b.Property<Guid?>("AeronaveId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("ClasseId")
@@ -145,11 +145,19 @@ namespace SV.Data.Persistence.Migrations
                     b.Property<int>("Numero")
                         .HasColumnType("int");
 
+                    b.Property<bool>("Status")
+                        .HasColumnType("bit");
+
+                    b.Property<Guid>("VooId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.HasKey("Id");
 
                     b.HasIndex("AeronaveId");
 
                     b.HasIndex("ClasseId");
+
+                    b.HasIndex("VooId");
 
                     b.ToTable("Assentos");
                 });
@@ -307,6 +315,59 @@ namespace SV.Data.Persistence.Migrations
                     b.ToTable("Funcionarios");
                 });
 
+            modelBuilder.Entity("SV.Core.Entities.Reservas.Reserva", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("AssentoId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("DataNascimento")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("varchar(225)");
+
+                    b.Property<string>("Endereco")
+                        .IsRequired()
+                        .HasColumnType("varchar(500)");
+
+                    b.Property<string>("Nome")
+                        .IsRequired()
+                        .HasColumnType("varchar(222)");
+
+                    b.Property<string>("NumeroDocumento")
+                        .IsRequired()
+                        .HasColumnType("varchar(225)");
+
+                    b.Property<decimal>("Preco")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("Sexo")
+                        .IsRequired()
+                        .HasColumnType("varchar(10)");
+
+                    b.Property<string>("Telefone")
+                        .IsRequired()
+                        .HasColumnType("varchar(20)");
+
+                    b.Property<string>("TipoDocumento")
+                        .IsRequired()
+                        .HasColumnType("varchar(20)");
+
+                    b.Property<Guid>("VooId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("VooId");
+
+                    b.ToTable("Reservas");
+                });
+
             modelBuilder.Entity("SV.Core.Entities.Voos.TipoDeVoo", b =>
                 {
                     b.Property<Guid>("Id")
@@ -345,6 +406,9 @@ namespace SV.Data.Persistence.Migrations
                     b.Property<Guid?>("AeroportoId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<string>("CoPiloto")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("DataDePartida")
                         .HasColumnType("datetime2");
 
@@ -357,6 +421,16 @@ namespace SV.Data.Persistence.Migrations
 
                     b.Property<DateTime>("HoraDePartida")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("Imagem")
+                        .IsRequired()
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<string>("Piloto")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("PrecoCusto")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<DateTime>("PrevisaoDeChegada")
                         .HasColumnType("datetime2");
@@ -528,20 +602,24 @@ namespace SV.Data.Persistence.Migrations
 
             modelBuilder.Entity("SV.Core.Entities.Aeronaves.Assento", b =>
                 {
-                    b.HasOne("SV.Core.Entities.Aeronaves.Aeronave", "Aeronave")
+                    b.HasOne("SV.Core.Entities.Aeronaves.Aeronave", null)
                         .WithMany("Assentos")
-                        .HasForeignKey("AeronaveId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("AeronaveId");
 
                     b.HasOne("SV.Core.Entities.Aeronaves.Classe", "Classe")
                         .WithMany("Assentos")
                         .HasForeignKey("ClasseId")
                         .IsRequired();
 
-                    b.Navigation("Aeronave");
+                    b.HasOne("SV.Core.Entities.Voos.Voo", "Voo")
+                        .WithMany("Assentos")
+                        .HasForeignKey("VooId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Classe");
+
+                    b.Navigation("Voo");
                 });
 
             modelBuilder.Entity("SV.Core.Entities.Aeroportos.Aeroporto", b =>
@@ -563,6 +641,17 @@ namespace SV.Data.Persistence.Migrations
                         .IsRequired();
 
                     b.Navigation("CategoriaFuncionario");
+                });
+
+            modelBuilder.Entity("SV.Core.Entities.Reservas.Reserva", b =>
+                {
+                    b.HasOne("SV.Core.Entities.Voos.Voo", "Voo")
+                        .WithMany("Reservas")
+                        .HasForeignKey("VooId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Voo");
                 });
 
             modelBuilder.Entity("SV.Core.Entities.Voos.Voo", b =>
@@ -632,6 +721,13 @@ namespace SV.Data.Persistence.Migrations
             modelBuilder.Entity("SV.Core.Entities.Voos.TipoDeVoo", b =>
                 {
                     b.Navigation("Voos");
+                });
+
+            modelBuilder.Entity("SV.Core.Entities.Voos.Voo", b =>
+                {
+                    b.Navigation("Assentos");
+
+                    b.Navigation("Reservas");
                 });
 
             modelBuilder.Entity("SV.Data.Persistence.Models.Usuarios.AppRole", b =>

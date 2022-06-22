@@ -44,9 +44,26 @@ namespace SV.Data.Persistence.Mappings.Voos
                .IsRequired()
                .HasColumnType("varchar(255)");
 
+            builder.Property(t => t.Imagem)
+               .IsRequired()
+               .HasColumnType("varchar(255)");
+
             builder.Property(t => t.Estado)
               .IsRequired()
               .HasColumnType("bit");
+
+            builder.Property(t => t.PrecoCusto)
+              .IsRequired()
+              .HasColumnType("decimal(18,2)");
+
+            builder.HasMany(a => a.Assentos)
+                .WithOne(a => a.Voo)
+                .HasForeignKey(a => a.VooId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            builder.HasMany(a => a.Reservas)
+                .WithOne(a => a.Voo)
+                .HasForeignKey(a => a.VooId);
 
             builder.ToTable("Voos");
         }

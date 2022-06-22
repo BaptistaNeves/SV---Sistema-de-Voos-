@@ -1,14 +1,14 @@
 ﻿@model SV.UI.Admin.Dashboard.ViewModels.Voos.VooViewModel
 
 @{
-    ViewData["Title"] = "Editar voo" + Model.VooInputModel.Descricao;
+    ViewData["Title"] = "Voo: " + Model.VooInputModel.Descricao;
 }
 
 <div class="content-header">
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0">Novo Aeroporto</h1>
+                <h1 class="m-0">Novo voo</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
@@ -24,22 +24,103 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-12">
-
                 <div class="card">
-                    <form asp-action="Edit">
-                        @await Component.InvokeAsync(typeof(SV.UI.Admin.Dashboard.Extensions.SummaryViewComponent))
+                    <div class="col-md-12">
+                          <div class="card-header p-2">
+                            <ul class="nav nav-pills">
+                              <li class="nav-item"><a class="nav-link active" href="#edition" data-toggle="tab">Edição</a></li>
+                              <li class="nav-item"><a class="nav-link" href="#details" data-toggle="tab">Detalhes</a></li>
+                              <li class="nav-item"><a class="nav-link" href="#assento" data-toggle="tab">Assentos</a></li>
+                            </ul>
+                          </div><!-- /.card-header -->
+                          <div class="card-body">
+                            <div class="tab-content">
+                              <div class="active tab-pane" id="edition">
+                    
+                                    <form asp-action="Edit" enctype="multipart/form-data">
+                                        @await Component.InvokeAsync(typeof(SV.UI.Admin.Dashboard.Extensions.SummaryViewComponent))
 
-                        <input type="hidden" asp-for="@Model.VooInputModel.Descricao" />
+                                        <input type="hidden" asp-for="@Model.VooInputModel.Id" />
 
-                        <partial name="_UpSert" model="Model" />
+                                        <partial name="_UpSert" model="Model" />
 
-                        <div class="card-footer">
-                            <div class="col-10 text-center">
-                                <input type="submit" class="btn btn-info" value="Atualizar">
-                                <a asp-action="Index" class="btn btn-default">Voltar</a>
+                                        <div class="card-footer">
+                                            <div class="col-10 text-center">
+                                                <input type="submit" class="btn btn-info" value="Atualizar">
+                                                <a asp-action="Index" class="btn btn-default">Voltar</a>
+                                            </div>
+                                        </div>
+                                    </form>
+                              </div>
+                              <!-- /.tab-pane -->
+                              <div class="tab-pane" id="details">
+                                  <div class="row">
+                                      <div class="col-10 col-md-4 col-lg-4"><strong>Descrição:</strong></div>
+                                      <div class="col-10 col-md-4 col-lg-4">@Model.VooInputModel.Descricao</div>
+                                  </div>
+                                  <div class="row mt-3">
+                                      <div class="col-10 col-md-4 col-lg-4"><strong>Piloto:</strong></div>
+                                      <div class="col-10 col-md-4 col-lg-4">@Model.VooInputModel.Piloto</div>
+                                  </div>
+                                  <div class="row mt-3">
+                                      <div class="col-10 col-md-4 col-lg-4"><strong>Co-piloto:</strong></div>
+                                      <div class="col-10 col-md-4 col-lg-4">@Model.VooInputModel.CoPiloto</div>
+                                  </div>
+                                  <div class="row mt-3">
+                                      <div class="col-10 col-md-4 col-lg-4"><strong>Aeroporto de origem:</strong></div>
+                                      <div class="col-10 col-md-4 col-lg-4">@Model.VooInputModel.AeroportoDeOrigem</div>
+                                  </div>
+                                  <div class="row mt-3">
+                                      <div class="col-10 col-md-4 col-lg-4"><strong>Aeroporto destino:</strong></div>
+                                      <div class="col-10 col-md-4 col-lg-4">@Model.VooInputModel.AeroportoDestino</div>
+                                  </div>
+                                  <div class="row mt-3">
+                                      <div class="col-10 col-md-4 col-lg-4"><strong>Hora de partida:</strong></div>
+                                      <div class="col-10 col-md-4 col-lg-4">@Model.VooInputModel.HoraDePartida.TimeOfDay</div>
+                                  </div>
+                                  <div class="row mt-3">
+                                      <div class="col-10 col-md-4 col-lg-4"><strong>Data de partida:</strong></div>
+                                      <div class="col-10 col-md-4 col-lg-4">
+                                          @Model.VooInputModel.DataDePartida.Date.Day/@Model.VooInputModel.DataDePartida.Date.Month/@Model.VooInputModel.DataDePartida.Date.Year
+                                      </div>
+                                  </div>
+                                  <div class="row mt-3">
+                                      <div class="col-10 col-md-4 col-lg-4"><strong>Previsão de chegada ao destino:</strong></div>
+                                      <div class="col-10 col-md-4 col-lg-4">
+                                          @Model.VooInputModel.PrevisaoDeChegadaAoDestino.Date.Day/@Model.VooInputModel.PrevisaoDeChegadaAoDestino.Date.Month/@Model.VooInputModel.PrevisaoDeChegadaAoDestino.Date.Year
+                                      </div>
+                                  </div>
+                                  <div class="row mt-3">
+                                      <div class="col-10 col-md-4 col-lg-4"><strong>Previsão de regresso:</strong></div>
+                                      <div class="col-10 col-md-4 col-lg-4">
+                                          @Model.VooInputModel.PrevisaoDeChegada.Date.Day/@Model.VooInputModel.PrevisaoDeChegada.Date.Month/@Model.VooInputModel.PrevisaoDeChegada.Date.Year
+                                      </div>
+                                  </div>
+                                  <div class="row mt-3">
+                                      <div class="col-10 col-md-4 col-lg-4"><strong>Estado:</strong></div>
+                                        <div class="col-10 col-md-4 col-lg-4">
+                                        @if(@Model.VooInputModel.Estado == true)
+                                        {
+                                            <p class="text-success"><strong>Liberado</strong></p>
+                                        } else
+                                        {
+                                            <p class="text-danger"><strong>Não liberado</strong></p> 
+                                        }
+                                      </div>
+                                  </div>
+                              </div>
+                              <!-- /.tab-pane -->
+                              <div class="tab-pane" id="assento">
+                                  <div id = "AssentoTarget">
+                                    <partial name="_Assentos" model="Model" />
+                                  </div>
+                              </div>
+                 
                             </div>
-                        </div>
-                    </form>
+                            <!-- /.tab-content -->
+                          </div><!-- /.card-body -->
+                    </div>
+                   
                 </div>
 
             </div>
@@ -47,7 +128,63 @@
     </div>
 </div>
 
+<div id="myModal" class="modal fade in">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div id="myModalContent"></div>
+        </div>
+    </div>
+</div>
+
 @section scripts
 {
     @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script>
+        $(document).ready(function () {
+            AjaxModal();
+        });
+
+        function AjaxModal() {
+
+    $(document).ready(function () {
+        $(function () {
+            $.ajaxSetup({ cache: false });
+
+            $("a[data-modal]").on("click",
+                function (e) {
+                    $('#myModalContent').load(this.href,
+                        function () {
+                            $('#myModal').modal({
+                                keyboard: true
+                            },
+                                'show');
+                            bindForm(this);
+                        });
+                    return false;
+                });
+        });
+
+        function bindForm(dialog) {
+            $('form', dialog).submit(function () {
+                $.ajax({
+                    url: this.action,
+                    type: this.method,
+                    data: $(this).serialize(),
+                    success: function (result) {
+                        if (result.success) {
+                            $('#myModal').modal('hide');
+                            $('#AssentoTarget').load(result.url); // Carrega o resultado HTML para a div demarcada
+                        } else {
+                            $('#myModalContent').html(result);
+                            bindForm(dialog);
+                        }
+                    }
+                });
+                return false;
+            });
+        }
+    });
+}
+    </script>
 }

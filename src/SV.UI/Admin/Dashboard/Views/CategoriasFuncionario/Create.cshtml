@@ -1,4 +1,4 @@
-﻿@model SV.Application.InputModels.Aeronaves.AeronaveInputModel
+﻿@model SV.Application.InputModels.Funcionarios.CategoriaFuncionarioInputModel
 
 @{
     ViewData["Title"] = "Nova Aeronave";
@@ -8,12 +8,12 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0">Nova Aeronave</h1>
+                <h1 class="m-0">Nova função</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a asp-area="Painel" asp-controller="Home" asp-action="Index">Ínicio</a></li>
-                    <li class="breadcrumb-item active">Nova Aeronave</li>
+                    <li class="breadcrumb-item active">Nova função</li>
                 </ol>
             </div>
         </div>
@@ -27,7 +27,7 @@
 
                 <div class="card">
                     <form asp-action="Create">
-                        <vc:Summary></vc:Summary>
+                        @await Component.InvokeAsync(typeof(SV.UI.Admin.Dashboard.Extensions.SummaryViewComponent))
                         <partial name="_UpSert" model="Model" />
 
                         <div class="card-footer">

@@ -65,7 +65,7 @@
                                             <td>@voo.Descricao</td>
                                             <td class="text-center">@voo.TipoDeVoo</td>
                                             <td class="text-center">@voo.DataDePartida.ToShortDateString()</td>
-                                            <td class="text-center">@voo.HoraDePartida.Hour</td>
+                                            <td class="text-center">@voo.HoraDePartida.TimeOfDay</td>
                                             <td class="text-center">
                                                 <a class="btn-sm btn-primary" asp-action="Edit" asp-route-id="@voo.Id"><i class="fa fa-edit"></i></a>
                                                 <a class="btn-sm btn-danger" asp-action="Delete" asp-route-id="@voo.Id" onclick="return confirm('Deseja realmente excluir este Tipo de voo?')"><i class="fa fa-trash"></i></a>
