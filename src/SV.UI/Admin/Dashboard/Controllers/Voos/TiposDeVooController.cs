@@ -93,7 +93,13 @@ namespace SV.UI.Admin.Dashboard.Controllers.Voos
 
             await _tipoDeVooService.Remover(id);
 
-            if (!OperacaoIsValide()) return View();
+
+            if (!OperacaoIsValide())
+            {
+                TempData["warning"] = "Este tipo de voo possui  voos cadastrados não pode ser excluida!";
+
+                return RedirectToAction(nameof(Index));
+            };
 
             TempData["success"] = "Tipo de voo excluido com sucesso!";
 

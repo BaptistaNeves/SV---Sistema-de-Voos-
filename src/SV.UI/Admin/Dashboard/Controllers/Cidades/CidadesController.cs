@@ -97,7 +97,12 @@ namespace SV.UI.Admin.Dashboard.Controllers.Cidades
 
             await _cidadeService.Remover(id);
 
-            if (!OperacaoIsValide()) return View();
+            if (!OperacaoIsValide())
+            {
+                TempData["warning"] = "Esta cidade possui  aeroportos cadastrados não pode ser excluida!";
+
+                return RedirectToAction(nameof(Index));
+            };
 
             TempData["success"] = "Cidade excluida com sucesso!";
 

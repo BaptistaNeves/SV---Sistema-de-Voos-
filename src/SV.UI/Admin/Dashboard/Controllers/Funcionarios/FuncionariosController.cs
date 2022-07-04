@@ -125,7 +125,23 @@ namespace SV.UI.Admin.Dashboard.Controllers.Funcionarios
 
             var imagemAntiga = funcionario.Imagem;
 
-            funcionarioModel.Imagem = imgPrefixo + Path.GetFileName(funcionarioModel.ImagemUpload.FileName.Trim());
+            funcionarioModel.Imagem = imagemAntiga;
+
+            if (funcionarioModel.ImagemUpload != null)
+            {
+                funcionarioModel.Imagem = imgPrefixo + Path.GetFileName(funcionarioModel.ImagemUpload.FileName.Trim());
+
+                if (!await UploadImage(funcionarioModel.ImagemUpload, imgPrefixo))
+                {
+                    return View(new FuncionarioViewModel
+                    {
+                        Categorias = await _categoriaService.ObterTodasCategoriasFuncionarios(),
+                        FuncionarioModel = funcionarioModel
+                    });
+                }
+
+                DeleteUploadedImage(imagemAntiga);
+            }
 
             await _funcionarioService.Atualizar(funcionarioModel);
 
@@ -138,19 +154,6 @@ namespace SV.UI.Admin.Dashboard.Controllers.Funcionarios
                 });
             }
 
-            if (funcionarioModel.ImagemUpload != null)
-            {
-                if (!await UploadImage(funcionarioModel.ImagemUpload, imgPrefixo))
-                {
-                    return View(new FuncionarioViewModel
-                    {
-                        Categorias = await _categoriaService.ObterTodasCategoriasFuncionarios(),
-                        FuncionarioModel = funcionarioModel
-                    });
-                }
-
-                DeleteUploadedImage(imagemAntiga);
-            }
 
             TempData["success"] = "Funcionário atualizado com successo!";
 

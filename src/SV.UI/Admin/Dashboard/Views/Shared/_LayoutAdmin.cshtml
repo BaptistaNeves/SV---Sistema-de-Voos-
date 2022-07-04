@@ -253,6 +253,14 @@
         </script>
     }
 
+    
+    @if (TempData["warning"] != null)
+    {
+        <script>
+            toastr.warning('@TempData["warning"]');
+        </script>
+    }
+
     <script src="~/js/site.js"></script>
     
     <script type="text/javascript">

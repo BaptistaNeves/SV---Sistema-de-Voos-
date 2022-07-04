@@ -6,7 +6,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="Admin\Dashboard\Views\Cidades\Delete.cshtml" />
     <Content Remove="Admin\Dashboard\Views\Funcionarios\Index.cshtml" />
   </ItemGroup>
 
@@ -33,16 +32,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <UpToDateCheckInput Remove="Admin\Dashboard\Views\Cidades\Delete.cshtml" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <_ContentIncludedByDefault Remove="Admin\Dashboard\Views\Cidades\Delete.cshtml" />
     <_ContentIncludedByDefault Remove="Admin\Dashboard\Views\Funcionarios\Index.cshtml" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="Admin\Dashboard\Views\Cidades\Delete.cshtml" />
     <None Include="Admin\Dashboard\Views\Funcionarios\Index.cshtml" />
   </ItemGroup>
 
